@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Telegraph.Views.FlyoutMenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
+    xmlns:local="clr-namespace:Telegraph.Views"
+    xmlns:local1="clr-namespace:Telegraph.ViewModels"
+    xmlns:local2="clr-namespace:CustomViewElements;assembly=CustomViewElements"
+    Title="Personal Organiser"
+    Padding="0,40,0,0">
+    <StackLayout>
+        <ListView
+            x:Name="listView"
+            x:FieldModifier="public"
+            RowHeight="75">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local1:FlyoutPageItem}">
+                    <local1:FlyoutPageItem
+                        Title="Profile"
+                        IconSource="{dh:ImageResourceExtension ic_profile.png}"
+                        TargetType="{x:Type local:ProfilePage}" />
+                    <local1:FlyoutPageItem
+                        Title="Show Qr and Public Key"
+                        IconSource="{dh:ImageResourceExtension ic_new_qrcode_scan.png}"
+                        TargetType="{x:Type local:QRScanAndShowPage}" />
+
+                    <local1:FlyoutPageItem
+                        Title="Privacy policy"
+                        IconSource="{dh:ImageResourceExtension ic_privacy.png}"
+                        TargetType="{x:Type WebView}" />
+                    <local1:FlyoutPageItem
+                        Title="Chat font size"
+                        IconSource="{dh:ImageResourceExtension ic_font_size.png}"
+                        TargetType="{x:Type local:TextSizePage}" />
+                    <local1:FlyoutPageItem
+                        Title="Verify passphrase"
+                        IconSource="{dh:ImageResourceExtension ic_verify_passphase.png}"
+                        TargetType="{x:Type local:ShowPublicKeyPage}" />
+                    <local1:FlyoutPageItem
+                        Title="Other Settings"
+                        IconSource="{dh:ImageResourceExtension ic_other_settings.png}"
+                        TargetType="{x:Type local:OtherSettingPage}" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+                    <ViewCell>
+
+                        <Grid Padding="5,10" ColumnSpacing="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <Image Grid.Column="0" Source="{Binding IconSource}" />
+
+                            <local2:CustomLabel
+                                Grid.Column="1"
+                                Margin="15,0,0,0"
+                                FontFamily="PoppinsMedium"
+                                FontSize="20"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding Title}"
+                                TextColor="{DynamicResource Color2}"
+                                VerticalOptions="CenterAndExpand" />
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

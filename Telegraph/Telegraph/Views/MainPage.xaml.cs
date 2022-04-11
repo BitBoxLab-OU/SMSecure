@@ -5,56 +5,40 @@ using EncryptedMessaging;
 using XamarinShared;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
+using ChatComposer.PopupViews;
+using Rg.Plugins.Popup.Services;
+using Xamarin.CommunityToolkit.Extensions;
 
 namespace Telegraph.Views
+
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : BasePage
     {
         private string query;
+
         public MainPage()
         {
-            try
-            {
-                InitializeComponent();
-            }
-            catch (Exception e) { }
+            InitializeComponent();
             ChatList.SetPlaceHolderVisibility(PlaceHolderVisibility);
-            ChatList.Init(ChatItemClicked, NavigationTappedPage.Context.Contacts.GetContacts());
-            Toolbar.AddNewChatButton(AddNewChat_Click);
             Toolbar.AddSearchButton(null);
+            Toolbar.AddLeftButton(Utils.Icons.IconProvider?.Invoke("ic_hamburger_menu.png"), OnMenuItemClicked);
             Toolbar.SearchEntry.TextChanged += Search_TextChanged;
+
+            ChatList.Init(ChatItemClicked, NavigationTappedPage.Context.Contacts.GetContacts(), HandleToolbarTitleChangeEvent, HandleCreateGroupEvent, AddButtonClicked, AddContactPopupClicked);
         }
 
-        public void PlaceHolderVisibility(bool isVisible)
+        private void OnMenuItemClicked(object sender, EventArgs e) => ((App)Application.Current).GetRootPage().IsPresented = true;
+
+        protected override void OnAppearing()
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                NoItemPage.IsVisible = isVisible && string.IsNullOrWhiteSpace(query);
-                NoResultPage.IsVisible = isVisible && !string.IsNullOrWhiteSpace(query);
-                ChatList.IsVisible = !isVisible;
-            });
         }
 
         protected override void OnDisappearing()
         {
             Toolbar.ClearViewState();
-            PopupView.IsVisible = false;
-        }
 
-        private void AddNewChat_Click(object sender, EventArgs e)
-        {
-            PopupView.IsVisible = !PopupView.IsVisible;
-        }
-
-        private void AddNewGroup_Click(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.Navigation.PushAsync(new GroupUserSelectPage(), false).ConfigureAwait(true);
-        }
-
-        private void AddNewContact_Click(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.Navigation.PushAsync(new EditItemPage(), false).ConfigureAwait(true);
         }
 
         private void ChatItemClicked(Contact contact, ChatItemClickType chatItemClick)
@@ -76,18 +60,40 @@ namespace Telegraph.Views
             }
         }
 
+        private void PlaceHolderVisibility(bool isVisible)
+        {
+            NoItemPage.IsVisible = isVisible && string.IsNullOrWhiteSpace(query);
+            NoResultPage.IsVisible = isVisible && !string.IsNullOrWhiteSpace(query);
+            ChatList.IsVisible = !isVisible;
+        }
+
+        private void HandleToolbarTitleChangeEvent(bool isContactSelected)
+        {
+            Toolbar.Title = !isContactSelected ? Localization.Resources.Dictionary.Chat : Localization.Resources.Dictionary.NewGroup;
+        }
+
+        private void HandleCreateGroupEvent(List<Contact> contacts)
+        {
+            foreach (Contact contact in contacts)
+            {
+                if (contact == null || contact.IsGroup)
+                {
+                    this.DisplayToastAsync("You cannot select a group.");
+                    return;
+                }
+            }
+            Application.Current.MainPage.Navigation.PushAsync(new GroupCreatePage(contacts), false);
+        }
+
         private async void OnChatItemTapped(Contact contact)
         {
-            if (App.IsVideoUploading && App.ContactVideoUploading == contact)
-                await Application.Current.MainPage.Navigation.PushAsync(App.ChatRoomVideoUploading, false).ConfigureAwait(true);
-            else
-                await Application.Current.MainPage.Navigation.PushAsync(new ChatRoom(contact), false).ConfigureAwait(true);
+            await Application.Current.MainPage.Navigation.PushAsync(new ChatRoom(contact), false).ConfigureAwait(true);
         }
 
         private async void OnChatItemEditClicked(Contact contact)
         {
             await Application.Current.MainPage.Navigation.PushAsync(new ChatUserProfilePage(contact), false).ConfigureAwait(true);
-            ChatList.ResetSwipe();
+            //ChatList.ResetSwipe();
         }
 
         private async void OnChatItemClearClicked(Contact contact)
@@ -98,7 +104,7 @@ namespace Telegraph.Views
                 Calls.GetInstance().ClearCleanedContactCalls(contact.PublicKeys);
                 NavigationTappedPage.Context.Contacts.ClearContact(contact.PublicKeys);
                 ChatList.ClearState();
-                ChatList.ResetSwipe();
+                // ChatList.ResetSwipe();
             }
         }
 
@@ -107,11 +113,10 @@ namespace Telegraph.Views
             var deleteAnswer = await Application.Current.MainPage.DisplayAlert(Localization.Resources.Dictionary.Alert, Localization.Resources.Dictionary.DeleteAlertQuestion, Localization.Resources.Dictionary.Yes, Localization.Resources.Dictionary.No);
             if (deleteAnswer)
             {
-                contact.IsBlocked = true;
                 Calls.GetInstance().ClearCleanedContactCalls(contact.PublicKeys);
                 NavigationTappedPage.Context.Contacts.RemoveContact(contact);
                 ChatList.ClearState();
-                ChatList.ResetSwipe();
+                // ChatList.ResetSwipe();
             }
         }
 
@@ -119,6 +124,20 @@ namespace Telegraph.Views
         {
             query = ((CustomEntry)sender).Text;
             ChatList.FilterContacts(query);
+        }
+        private async void AddButtonClicked()
+        {
+            if (IsBusy)
+                return;
+            await Application.Current.MainPage.Navigation.PushAsync(new EditItemPage());
+
+        }
+
+        private void AddContactPopupClicked()
+        {
+            var addContactPopup = new AddContactPopupPage();
+            PopupNavigation.Instance.PushAsync(addContactPopup, true);
+
         }
     }
 }

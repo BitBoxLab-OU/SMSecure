@@ -517,7 +517,7 @@ namespace Telegraph
 		{
 			Device.BeginInvokeOnMainThread(() =>
 			{
-                ((App)Current).GetRootPage()?.ShowProgressDialog();
+				((App)Current).GetRootPage() ;
 			});
 			Thread thread = new Thread(new ThreadStart(DoRestore));
 			thread.Start();
@@ -538,7 +538,7 @@ namespace Telegraph
 				});
 				Device.BeginInvokeOnMainThread(() =>
 				{
-					((App)Current).GetRootPage()?.HideProgressDialog();
+					((App)Current).GetRootPage() ;
 					((App)Current).GetRootPage()?.DisplayToastAsync(Localization.Resources.Dictionary.RestartApplication);
 				});
 
