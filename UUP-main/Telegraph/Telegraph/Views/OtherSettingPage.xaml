@@ -1,0 +1,215 @@
+﻿<local1:BasePage
+    x:Class="Telegraph.Views.OtherSettingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:Localization;assembly=Localization"
+    xmlns:local1="clr-namespace:CustomViewElements;assembly=CustomViewElements"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    ios:Page.UseSafeArea="true">
+
+    <StackLayout>
+        <local1:MyCustomToolbar
+            x:Name="Toolbar"
+            Title="Other Settings"
+            OnBackBtnClicked="Back_Clicked" />
+
+        <StackLayout Margin="20,20,0,0" Orientation="Horizontal">
+            <local1:CustomLabel
+                x:Name="AppLock_Text"
+                FontFamily="PoppinsMedium"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="{x:Static local:Resources.Dictionary.AppLock}"
+                TextColor="{DynamicResource WhiteColor}"
+                VerticalOptions="Center"
+                WidthRequest="310" />
+            <Switch
+                x:Name="AppLock1"
+                Margin="0,0,20,0"
+                HorizontalOptions="End"
+                IsToggled="True"
+                OnColor="{DynamicResource Theme}"
+                Scale="1.3"
+                ThumbColor="White"
+                Toggled="SfSwitch_AppLockStateChanged" />
+
+        </StackLayout>
+
+
+        <StackLayout
+            Margin="14,15,14,0"
+            BackgroundColor="{DynamicResource Gray}"
+            HeightRequest="1"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="True" />
+        <StackLayout Margin="20,20,10,20" Orientation="Horizontal">
+            <StackLayout
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="100">
+                <Label
+                    x:Name="NumberOfMessageLabel"
+                    FontFamily="PoppinsMedium"
+                    FontSize="18"
+                    HorizontalTextAlignment="Start"
+                    Text="{x:Static local:Resources.Dictionary.MessageLimits}"
+                    TextColor="{DynamicResource WhiteColor}" />
+            </StackLayout>
+
+            <StackLayout
+                Margin="16,0,16,0"
+                Orientation="Horizontal"
+                Spacing="0"
+                WidthRequest="200">
+
+                <StackLayout
+                    Margin="8,0,8,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+                    <Slider
+                        x:Name="messageLimitSlider"
+                        Margin="0"
+                        HorizontalOptions="FillAndExpand"
+                        Maximum="3"
+                        MaximumTrackColor="Wheat"
+                        Minimum="0"
+                        MinimumTrackColor="{DynamicResource Color2}"
+                        Scale="1.2"
+                        ThumbColor="{DynamicResource Color2}"
+                        ValueChanged="MessageLimits_Clicked"
+                        VerticalOptions="FillAndExpand" />
+                    <AbsoluteLayout
+                        x:Name="MessageLimitSteps"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+                        <Label
+                            AbsoluteLayout.LayoutBounds="-0.02,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="0"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.32,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="10"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.67,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="20"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="1.0,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="30"
+                            TextColor="{DynamicResource WhiteColor}" />
+                    </AbsoluteLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
+            Margin="14,5,14,0"
+            BackgroundColor="{DynamicResource Gray}"
+            HeightRequest="1"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="True" />
+        <StackLayout Margin="19,20,10,20" Orientation="Horizontal">
+            <StackLayout
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="100">
+                <Label
+                    x:Name="ValidityOfMessageLabel"
+                    FontFamily="PoppinsMedium"
+                    FontSize="18"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start"
+                    Text="{x:Static local:Resources.Dictionary.DurationOfMessages}"
+                    TextColor="{DynamicResource WhiteColor}"
+                    VerticalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <StackLayout
+                Margin="16,0,16,0"
+                Orientation="Horizontal"
+                Spacing="0"
+                WidthRequest="200">
+
+                <StackLayout
+                    Margin="8,0,8,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+                    <Slider
+                        x:Name="slider"
+                        Margin="0"
+                        HorizontalOptions="FillAndExpand"
+                        Maximum="3"
+                        MaximumTrackColor="Wheat"
+                        Minimum="0"
+                        MinimumTrackColor="{DynamicResource Color2}"
+                        Scale="1.2"
+                        ThumbColor="{DynamicResource Color2}"
+                        ValueChanged="MessageDuration_Clicked"
+                        VerticalOptions="FillAndExpand" />
+
+                    <AbsoluteLayout
+                        x:Name="Steps"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+                        <Label
+                            AbsoluteLayout.LayoutBounds="-0.02,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="0"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.32,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="10"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.67,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="20"
+                            TextColor="{DynamicResource WhiteColor}" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="1.0,0"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="PoppinsLight"
+                            FontSize="14"
+                            Text="30"
+                            TextColor="{DynamicResource WhiteColor}" />
+                    </AbsoluteLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
+            Margin="14,5,14,0"
+            BackgroundColor="{DynamicResource Gray}"
+            HeightRequest="1"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="True" />
+    </StackLayout>
+</local1:BasePage>

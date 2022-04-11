@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Enums\" />
+    <None Remove="Services\" />
+    <None Remove="helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Services\" />
+    <Folder Include="helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Localization\Localization.csproj" />
+    <ProjectReference Include="..\TelegraphLibrary\TelegraphLibrary\EncryptedMessaging.csproj" />
+  </ItemGroup>
+</Project>

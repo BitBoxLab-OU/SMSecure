@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage
+    x:Class="Telegraph.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:CustomViewElements;assembly=CustomViewElements"
+    xmlns:local1="clr-namespace:Localization;assembly=Localization"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="ProfilepPage"
+    ios:Page.UseSafeArea="true"
+    mc:Ignorable="d">
+    <StackLayout BackgroundColor="{DynamicResource Color1}" Orientation="Vertical">
+        <local:MyCustomToolbar
+            x:Name="Toolbar"
+            Title="{x:Static local1:Resources.Dictionary.Profile}"
+            OnBackBtnClicked="Back_Clicked" />
+
+        <ScrollView>
+            <StackLayout
+                BackgroundColor="{DynamicResource Color1}"
+                Orientation="Vertical"
+                VerticalOptions="Start">
+
+
+                <pancakeview:PancakeView
+                    x:Name="PancakeView"
+                    Margin="30,142,30,0"
+                    BackgroundColor="{DynamicResource Color2}"
+                    CornerRadius="15,15,15,15"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout Margin="0,90,0,0">
+
+                        <local:CustomLabel
+                            x:Name="PublicKey"
+                            Margin="5,35,5,0"
+                            FontFamily="PoppinsMedium"
+                            FontSize="18"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{DynamicResource Color1}" />
+                        <Frame
+                            Padding="0,0,0,0"
+                            AbsoluteLayout.LayoutBounds="0,0,1,-1"
+                            AbsoluteLayout.LayoutFlags="WidthProportional"
+                            BackgroundColor="{DynamicResource Color2}"
+                            CornerRadius="25"
+                            HasShadow="False">
+                            <StackLayout Spacing="0">
+
+                                <Frame
+                                    Margin="10,2,10,10"
+                                    Padding="20,0,0,0"
+                                    BackgroundColor="{DynamicResource Color1}"
+                                    CornerRadius="25"
+                                    HasShadow="False"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.7*" />
+                                            <ColumnDefinition Width="0.3*" />
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <local:CustomEntry
+                                            x:Name="Name"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="{DynamicResource Color1}"
+                                            Focused="CustomEntry_Focused"
+                                            FontFamily="PoppinsLight"
+                                            FontSize="18"
+                                            HorizontalOptions="FillAndExpand"
+                                            IsReadOnly="true"
+                                            MaxLength="18"
+                                            Placeholder="{x:Static local1:Resources.Dictionary.UserName}"
+                                            PlaceholderColor="{DynamicResource WhiteColor}"
+                                            TextColor="{DynamicResource WhiteColor}"
+                                            Unfocused="CustomEntry_Unfocused"
+                                            VerticalOptions="Center" />
+                                        <Image
+                                            x:Name="Edit"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="0,0,20,0"
+                                            HeightRequest="30"
+                                            HorizontalOptions="End"
+                                            Source="{dh:ImageResourceExtension ic_edit_username.png}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="EditUsername" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+
+                                </Frame>
+
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
+
+                </pancakeview:PancakeView>
+
+                <Frame
+                    Margin="0,-360,0,160"
+                    Padding="0"
+                    CornerRadius="98"
+                    HasShadow="False"
+                    HorizontalOptions="Center"
+                    MinimumWidthRequest="196"
+                    WidthRequest="196">
+
+                    <Grid>
+                        <Image
+                            x:Name="Profile_Photo"
+                            Aspect="AspectFill"
+                            HeightRequest="196"
+                            HorizontalOptions="Center"
+                            MinimumHeightRequest="196"
+                            MinimumWidthRequest="196"
+                            Source="{dh:ImageResourceExtension ic_add_contact_profile.png}"
+                            VerticalOptions="Fill"
+                            WidthRequest="196">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Image_Clicked" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Button
+                            Margin="0,0,0,-4"
+                            BackgroundColor="{DynamicResource Foreground}"
+                            CornerRadius="14"
+                            Font="16"
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Pressed="Image_Clicked"
+                            Text="Edit"
+                            TextColor="{DynamicResource Color1}"
+                            VerticalOptions="End"
+                            WidthRequest="200" />
+                    </Grid>
+                </Frame>
+                <pancakeview:PancakeView
+                    x:Name="CancelSaveLayout"
+                    Margin="30,0,30,0"
+                    BackgroundColor="{DynamicResource Color1}"
+                    CornerRadius="15,15,15,15"
+                    IsVisible="false"
+                    VerticalOptions="End">
+                    <pancakeview:PancakeView.Border>
+                        <pancakeview:Border Thickness="2" Color="#202D44" />
+                    </pancakeview:PancakeView.Border>
+                    <Grid HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="0.49*" />
+                            <ColumnDefinition Width="0.02*" />
+                            <ColumnDefinition Width="0.49*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,0,0"
+                            BackgroundColor="{DynamicResource Color1}"
+                            Font="16"
+                            HorizontalOptions="FillAndExpand"
+                            Pressed="Cancel_Clicked"
+                            Text="Cancel"
+                            TextColor="Red"
+                            VerticalOptions="End" />
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="1"
+                            Color="#202D44" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Margin="0,0,0,0"
+                            BackgroundColor="{DynamicResource Color1}"
+                            Font="16"
+                            HorizontalOptions="FillAndExpand"
+                            Pressed="Save_Clicked"
+                            Text="Save"
+                            TextColor="Green"
+                            VerticalOptions="End" />
+
+                    </Grid>
+
+                </pancakeview:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</local:BasePage>

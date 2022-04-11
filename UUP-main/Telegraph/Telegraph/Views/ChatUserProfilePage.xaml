@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage
+    x:Class="Telegraph.Views.ChatUserProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:CustomViewElements;assembly=CustomViewElements"
+    xmlns:local1="clr-namespace:Localization;assembly=Localization"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    ios:Page.UseSafeArea="true"
+    mc:Ignorable="d">
+    <StackLayout>
+        <local:MyCustomToolbar
+            x:Name="Toolbar"
+            Title="{x:Static local1:Resources.Dictionary.InfoContact}"
+            OnBackBtnClicked="Back_Clicked" />
+        <ScrollView>
+            <StackLayout
+                Margin="0,0,0,0"
+                BackgroundColor="{DynamicResource Color1}"
+                VerticalOptions="Fill">
+
+                <StackLayout>
+                    <Frame
+                        Padding="0,0,0,0"
+                        AbsoluteLayout.LayoutBounds="0,0,1,-1"
+                        AbsoluteLayout.LayoutFlags="WidthProportional"
+                        BackgroundColor="{DynamicResource Color2}"
+                        CornerRadius="25"
+                        HasShadow="False">
+                        <StackLayout Spacing="0" />
+                    </Frame>
+
+                    <Frame
+                        Margin="15,100,15,0"
+                        BackgroundColor="{DynamicResource Color2}"
+                        CornerRadius="15"
+                        HeightRequest="200"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="369">
+
+                        <StackLayout
+                            HeightRequest="65"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="CenterAndExpand">
+                            <Image
+                                x:Name="Message"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HeightRequest="65"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="true"
+                                Source="{dh:ImageResourceExtension ic_message.png}"
+                                WidthRequest="65">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Message_Clicked" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Frame
+                                Margin="10,2,10,10"
+                                Padding="00,0,0,0"
+                                BackgroundColor="{DynamicResource Color1}"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="500">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.3*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <local:CustomEntry
+                                        x:Name="NameEntry"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        BackgroundColor="{DynamicResource Color1}"
+                                        FontFamily="PoppinsLight"
+                                        FontSize="18"
+                                        HorizontalOptions="FillAndExpand"
+                                        IsReadOnly="true"
+                                        MaxLength="18"
+                                        Placeholder="{x:Static local1:Resources.Dictionary.UserName}"
+                                        PlaceholderColor="{DynamicResource WhiteColor}"
+                                        TextColor="{DynamicResource WhiteColor}"
+                                        VerticalOptions="Center" />
+                                    <Image
+                                        x:Name="Edit"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,0,20,0"
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Source="{dh:ImageResourceExtension ic_edit_username.png}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Edit_Clicked" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                    <local:CustomAvatar
+                        x:Name="UserProfilePhoto"
+                        Margin="100,-340,100,200"
+                        Contact="{Binding .}"
+                        CornerRadius="80"
+                        HeightRequest="160"
+                        HorizontalOptions="Center"
+                        WidthRequest="160" />
+
+                    <StackLayout Spacing="0">
+
+
+                        <pancakeview:PancakeView
+                            x:Name="CancelSaveLayout"
+                            Margin="20,0,20,0"
+                            BackgroundColor="{DynamicResource Color1}"
+                            CornerRadius="15,15,15,15"
+                            IsVisible="false"
+                            VerticalOptions="End">
+                            <pancakeview:PancakeView.Border>
+                                <pancakeview:Border Thickness="2" Color="#202D44" />
+                            </pancakeview:PancakeView.Border>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="0.49*" />
+                                    <ColumnDefinition Width="0.02*" />
+                                    <ColumnDefinition Width="0.49*" />
+                                </Grid.ColumnDefinitions>
+                                <Button
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="0,0,0,0"
+                                    BackgroundColor="{DynamicResource Color1}"
+                                    Font="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    Pressed="BackEdit_Clicked"
+                                    Text="Cancel"
+                                    TextColor="Red"
+                                    VerticalOptions="End" />
+                                <BoxView
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    WidthRequest="1"
+                                    Color="#202D44" />
+                                <Button
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Margin="0,0,0,0"
+                                    BackgroundColor="{DynamicResource Color1}"
+                                    Font="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    Pressed="Save_Clicked"
+                                    Text="Save"
+                                    TextColor="Green"
+                                    VerticalOptions="End" />
+
+                            </Grid>
+
+                        </pancakeview:PancakeView>
+
+                    </StackLayout>
+
+                </StackLayout>
+                <StackLayout Margin="0" Orientation="Vertical">
+                    <StackLayout
+                        Margin="15,40,15,10"
+                        Padding="0,10,0,10"
+                        BackgroundColor="{DynamicResource Color1}"
+                        Orientation="Vertical">
+                        <local:CustomLabel
+                            BackgroundColor="{DynamicResource Color1}"
+                            FontFamily="PoppinsMedium"
+                            FontSize="18"
+                            Text="{x:Static local1:Resources.Dictionary.MessageReadStatusDisable}"
+                            TextColor="{DynamicResource WhiteColor}" />
+
+                        <StackLayout Margin="0,20,0,0" Orientation="Horizontal">
+
+                            <local:CustomLabel
+                                FontFamily="PoppinsLight"
+                                FontSize="14"
+                                HorizontalOptions="Start"
+                                Text="{x:Static local1:Resources.Dictionary.MessageReadDisableStatusInfo}"
+                                TextColor="{DynamicResource WhiteColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="310" />
+                            <Switch
+                                x:Name="MessageConfirmationButton"
+                                Margin="0,0,20,0"
+                                IsToggled="False"
+                                OnColor="{DynamicResource Theme}"
+                                Scale="1.3"
+                                ThumbColor="White" />
+
+                            <!--  Toggled="MessageConfirmationButton_StateChanged"  -->
+
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout
+                        Margin="15,-5,15,0"
+                        BackgroundColor="{DynamicResource Gray}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="True" />
+                    <StackLayout
+                        Margin="15,0,15,10"
+                        Padding="0,10,0,13"
+                        BackgroundColor="{DynamicResource Color1}"
+                        Orientation="Vertical">
+                        <local:CustomLabel
+                            x:Name="MessageTranslationLabel"
+                            BackgroundColor="{DynamicResource Color1}"
+                            FontFamily="PoppinsMedium"
+                            FontSize="18"
+                            Text="{x:Static local1:Resources.Dictionary.AllowMessageTranslation}"
+                            TextColor="{DynamicResource WhiteColor}" />
+
+                        <StackLayout Margin="0,20,0,0" Orientation="Horizontal">
+
+
+                            <local:CustomLabel
+                                x:Name="MessageAutoTranslation_Text"
+                                FontFamily="PoppinsLight"
+                                FontSize="14"
+                                HorizontalOptions="Start"
+                                Text="{x:Static local1:Resources.Dictionary.AutoMessageTranslationCaption}"
+                                TextColor="{DynamicResource WhiteColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="310" />
+                            <Switch
+                                x:Name="MessageAutoTranslation"
+                                Margin="0,0,20,0"
+                                IsToggled="False"
+                                OnColor="{DynamicResource Theme}"
+                                Scale="1.3"
+                                ThumbColor="White" />
+                            <!--  Toggled="MessageAutoTranslation_Toggled"  -->
+
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout
+                        Margin="15,-5,15,0"
+                        BackgroundColor="{DynamicResource Gray}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="True" />
+                    <StackLayout
+                        Margin="15,0,15,10"
+                        Padding="0,10,0,13"
+                        BackgroundColor="{DynamicResource Color1}"
+                        Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*" />
+                                <ColumnDefinition Width="30*" />
+                            </Grid.ColumnDefinitions>
+                            <local:CustomLabel
+                                x:Name="BlockUser"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                BackgroundColor="{DynamicResource Color1}"
+                                FontFamily="PoppinsMedium"
+                                FontSize="18"
+                                Text="{x:Static local1:Resources.Dictionary.BlockTheUser}"
+                                TextColor="{DynamicResource WhiteColor}" />
+                            <local:CustomLabel
+                                x:Name="BlockUserInfo"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontFamily="PoppinsLight"
+                                FontSize="14"
+                                HorizontalOptions="Start"
+                                Text="{x:Static local1:Resources.Dictionary.TheuserWillNotBeAbleToWriteYouAnymore}"
+                                TextColor="{DynamicResource WhiteColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="310" />
+                            <Image
+                                x:Name="UserBlockblockIcon"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="36"
+                                HorizontalOptions="Center"
+                                Source="{dh:ImageResourceExtension ic_chatuser_unblocked.png}"
+                                VerticalOptions="Center"
+                                WidthRequest="36" />
+                        </Grid>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Block_Clicked" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <syncfusion1:SfListView
+                        x:Name="ItemsListView"
+                        BackgroundColor="Transparent"
+                        IsScrollingEnabled="False"
+                        IsVisible="False"
+                        ItemSize="75"
+                        ItemsSource="{Binding Items}"
+                        SelectionMode="None"
+                        VerticalOptions="End">
+                        <syncfusion1:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                        HeightRequest="75"
+                                        MinimumHeightRequest="75"
+                                        Orientation="Vertical"
+                                        Spacing="0">
+                                        <StackLayout Margin="12" Orientation="Horizontal">
+                                            <local:CustomAvatar
+                                                Contact="{Binding .}"
+                                                CornerRadius="26"
+                                                HeightRequest="52"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                WidthRequest="52" />
+                                            <local:CustomLabel
+                                                x:Name="Name"
+                                                Margin="10,0,0,0"
+                                                FontFamily="PoppinsSemiBold"
+                                                FontSize="18"
+                                                HorizontalOptions="Start"
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                Text="{Binding Name}"
+                                                TextColor="{DynamicResource WhiteColor}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <BoxView
+                                            Margin="92,0,0,0"
+                                            HeightRequest="1"
+                                            VerticalOptions="Fill"
+                                            Color="{x:DynamicResource Color3}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </syncfusion1:SfListView.ItemTemplate>
+                    </syncfusion1:SfListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</local:BasePage>

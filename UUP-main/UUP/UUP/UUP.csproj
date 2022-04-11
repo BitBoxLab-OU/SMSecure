@@ -1,0 +1,190 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\app_logo.png" />
+    <None Remove="Icons\app_logo_trasparant.png" />
+    <None Remove="Icons\Company_logo.png" />
+    <None Remove="Icons\group.png" />
+    <None Remove="Icons\ic_accept_call.png" />
+    <None Remove="Icons\ic_add_contact_header.png" />
+    <None Remove="Icons\ic_add_contact_icon.png" />
+    <None Remove="Icons\ic_add_group.png" />
+    <None Remove="Icons\ic_add_photo.png" />
+    <None Remove="Icons\ic_attachment.png" />
+    <None Remove="Icons\ic_audio.png" />
+    <None Remove="Icons\ic_audio_pause.png" />
+    <None Remove="Icons\ic_audio_speaker_off.png" />
+    <None Remove="Icons\ic_audio_speaker_on.png" />
+    <None Remove="Icons\ic_audio_start.png" />
+    <None Remove="Icons\ic_avatar.png" />
+    <None Remove="Icons\ic_back_icon.png" />
+    <None Remove="Icons\ic_call_profile.png" />
+    <None Remove="Icons\ic_camera.png" />
+    <None Remove="Icons\ic_cam_active_call.png" />
+    <None Remove="Icons\ic_cam_disabled_call.png" />
+    <None Remove="Icons\ic_cam_disable_call.png" />
+    <None Remove="Icons\ic_cancel.png" />
+    <None Remove="Icons\ic_chatuser_message.png" />
+    <None Remove="Icons\ic_chatuser_mute.png" />
+    <None Remove="Icons\ic_chatuser_save.png" />
+    <None Remove="Icons\ic_chatuser_unmute.png" />
+    <None Remove="Icons\ic_chat_edit.png" />
+    <None Remove="Icons\ic_clear.png" />
+    <None Remove="Icons\ic_delete_contact.png" />
+    <None Remove="Icons\ic_edit.png" />
+    <None Remove="Icons\ic_end_call.png" />
+    <None Remove="Icons\ic_finish_recording.png" />
+    <None Remove="Icons\ic_gallery.png" />
+    <None Remove="Icons\ic_group.png" />
+    <None Remove="Icons\ic_help_faq.png" />
+    <None Remove="Icons\ic_help_privacy.png" />
+    <None Remove="Icons\ic_language.png" />
+    <None Remove="Icons\ic_language_done.png" />
+    <None Remove="Icons\ic_location.png" />
+    <None Remove="Icons\ic_login_profile_photo.png" />
+    <None Remove="Icons\ic_login_select_image.png" />
+    <None Remove="Icons\ic_login_splashscreen.png" />
+    <None Remove="Icons\ic_main_add_new_contact.png" />
+    <None Remove="Icons\ic_main_cancel.png" />
+    <None Remove="Icons\ic_main_qr_code.png" />
+    <None Remove="Icons\ic_main_share_publickey.png" />
+    <None Remove="Icons\ic_mark.png" />
+    <None Remove="Icons\ic_menu.png" />
+    <None Remove="Icons\ic_menu_security.png" />
+    <None Remove="Icons\ic_message.png" />
+    <None Remove="Icons\ic_message_delete.png" />
+    <None Remove="Icons\ic_mic_active_call.png" />
+    <None Remove="Icons\ic_mic_inactive_call.png" />
+    <None Remove="Icons\ic_mic_muted_call.png" />
+    <None Remove="Icons\ic_next_new.png" />
+    <None Remove="Icons\ic_pdf.png" />
+    <None Remove="Icons\ic_pdf_menu.png" />
+    <None Remove="Icons\ic_phone.png" />
+    <None Remove="Icons\ic_pin_back.png" />
+    <None Remove="Icons\ic_pin_done.png" />
+    <None Remove="Icons\ic_pin_next.png" />
+    <None Remove="Icons\ic_plus.png" />
+    <None Remove="Icons\ic_private_key.png" />
+    <None Remove="Icons\ic_profile_edit.png" />
+    <None Remove="Icons\ic_record.png" />
+    <None Remove="Icons\ic_save_profile.png" />
+    <None Remove="Icons\ic_search_close.png" />
+    <None Remove="Icons\ic_selectusers_back_icon.png" />
+    <None Remove="Icons\ic_send.png" />
+    <None Remove="Icons\ic_send_image.png" />
+    <None Remove="Icons\ic_share_publickey.png" />
+    <None Remove="Icons\ic_splash_screen.png" />
+    <None Remove="Icons\ic_splash_screen1.png" />
+    <None Remove="Icons\ic_switch_camera_call.png" />
+    <None Remove="Icons\ic_thumb.png" />
+    <None Remove="Icons\ic_video_call.png" />
+    <None Remove="Icons\ic_video_call_off.png" />
+    <None Remove="Icons\ic_video_call_on.png" />
+    <None Remove="Icons\pattern.png" />
+    <None Remove="Icons\pencil.png" />
+    <None Remove="Icons\user_profile_top_background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\app_logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\app_logo_trasparant.png" />
+    <EmbeddedResource Include="Icons\Company_logo.png" />
+    <EmbeddedResource Include="Icons\group.png" />
+    <EmbeddedResource Include="Icons\ic_accept_call.png" />
+    <EmbeddedResource Include="Icons\ic_add_contact_header.png" />
+    <EmbeddedResource Include="Icons\ic_add_contact_icon.png" />
+    <EmbeddedResource Include="Icons\ic_add_group.png" />
+    <EmbeddedResource Include="Icons\ic_add_photo.png" />
+    <EmbeddedResource Include="Icons\ic_attachment.png" />
+    <EmbeddedResource Include="Icons\ic_audio.png" />
+    <EmbeddedResource Include="Icons\ic_audio_pause.png" />
+    <EmbeddedResource Include="Icons\ic_audio_speaker_off.png" />
+    <EmbeddedResource Include="Icons\ic_audio_speaker_on.png" />
+    <EmbeddedResource Include="Icons\ic_audio_start.png" />
+    <EmbeddedResource Include="Icons\ic_avatar.png" />
+    <EmbeddedResource Include="Icons\ic_back_icon.png" />
+    <EmbeddedResource Include="Icons\ic_call_profile.png" />
+    <EmbeddedResource Include="Icons\ic_camera.png" />
+    <EmbeddedResource Include="Icons\ic_cam_active_call.png" />
+    <EmbeddedResource Include="Icons\ic_cam_disabled_call.png" />
+    <EmbeddedResource Include="Icons\ic_cam_disable_call.png" />
+    <EmbeddedResource Include="Icons\ic_cancel.png" />
+    <EmbeddedResource Include="Icons\ic_chatuser_message.png" />
+    <EmbeddedResource Include="Icons\ic_chatuser_mute.png" />
+    <EmbeddedResource Include="Icons\ic_chatuser_save.png" />
+    <EmbeddedResource Include="Icons\ic_chatuser_unmute.png" />
+    <EmbeddedResource Include="Icons\ic_chat_edit.png" />
+    <EmbeddedResource Include="Icons\ic_clear.png" />
+    <EmbeddedResource Include="Icons\ic_delete_contact.png" />
+    <EmbeddedResource Include="Icons\ic_edit.png" />
+    <EmbeddedResource Include="Icons\ic_end_call.png" />
+    <EmbeddedResource Include="Icons\ic_finish_recording.png" />
+    <EmbeddedResource Include="Icons\ic_gallery.png" />
+    <EmbeddedResource Include="Icons\ic_group.png" />
+    <EmbeddedResource Include="Icons\ic_help_faq.png" />
+    <EmbeddedResource Include="Icons\ic_help_privacy.png" />
+    <EmbeddedResource Include="Icons\ic_language.png" />
+    <EmbeddedResource Include="Icons\ic_language_done.png" />
+    <EmbeddedResource Include="Icons\ic_location.png" />
+    <EmbeddedResource Include="Icons\ic_login_profile_photo.png" />
+    <EmbeddedResource Include="Icons\ic_login_select_image.png" />
+    <EmbeddedResource Include="Icons\ic_login_splashscreen.png" />
+    <EmbeddedResource Include="Icons\ic_main_add_new_contact.png" />
+    <EmbeddedResource Include="Icons\ic_main_cancel.png" />
+    <EmbeddedResource Include="Icons\ic_main_qr_code.png" />
+    <EmbeddedResource Include="Icons\ic_main_share_publickey.png" />
+    <EmbeddedResource Include="Icons\ic_mark.png" />
+    <EmbeddedResource Include="Icons\ic_menu.png" />
+    <EmbeddedResource Include="Icons\ic_menu_security.png" />
+    <EmbeddedResource Include="Icons\ic_message.png" />
+    <EmbeddedResource Include="Icons\ic_message_delete.png" />
+    <EmbeddedResource Include="Icons\ic_mic_active_call.png" />
+    <EmbeddedResource Include="Icons\ic_mic_inactive_call.png" />
+    <EmbeddedResource Include="Icons\ic_mic_muted_call.png" />
+    <EmbeddedResource Include="Icons\ic_next_new.png" />
+    <EmbeddedResource Include="Icons\ic_pdf.png" />
+    <EmbeddedResource Include="Icons\ic_pdf_menu.png" />
+    <EmbeddedResource Include="Icons\ic_phone.png" />
+    <EmbeddedResource Include="Icons\ic_pin_back.png" />
+    <EmbeddedResource Include="Icons\ic_pin_done.png" />
+    <EmbeddedResource Include="Icons\ic_pin_next.png" />
+    <EmbeddedResource Include="Icons\ic_plus.png" />
+    <EmbeddedResource Include="Icons\ic_private_key.png" />
+    <EmbeddedResource Include="Icons\ic_profile_edit.png" />
+    <EmbeddedResource Include="Icons\ic_record.png" />
+    <EmbeddedResource Include="Icons\ic_save_profile.png" />
+    <EmbeddedResource Include="Icons\ic_search_close.png" />
+    <EmbeddedResource Include="Icons\ic_selectusers_back_icon.png" />
+    <EmbeddedResource Include="Icons\ic_send.png" />
+    <EmbeddedResource Include="Icons\ic_send_image.png" />
+    <EmbeddedResource Include="Icons\ic_share_publickey.png" />
+    <EmbeddedResource Include="Icons\ic_splash_screen.png" />
+    <EmbeddedResource Include="Icons\ic_splash_screen1.png" />
+    <EmbeddedResource Include="Icons\ic_switch_camera_call.png" />
+    <EmbeddedResource Include="Icons\ic_thumb.png" />
+    <EmbeddedResource Include="Icons\ic_video_call.png" />
+    <EmbeddedResource Include="Icons\ic_video_call_off.png" />
+    <EmbeddedResource Include="Icons\ic_video_call_on.png" />
+    <EmbeddedResource Include="Icons\pattern.png" />
+    <EmbeddedResource Include="Icons\pencil.png" />
+    <EmbeddedResource Include="Icons\user_profile_top_background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+</Project>
