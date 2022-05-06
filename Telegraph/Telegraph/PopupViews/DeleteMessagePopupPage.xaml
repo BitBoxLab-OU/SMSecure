@@ -33,7 +33,7 @@
             <StackLayout Padding="0" Orientation="Vertical">
                 <pancakeview:PancakeView
                     Margin="0,0,0,0"
-                    BackgroundColor="{DynamicResource WhiteColor}"
+                    BackgroundColor="{DynamicResource Color1}"
                     CornerRadius="15,15,0,0"
                     HeightRequest="48">
                     <local2:CustomLabel
@@ -45,74 +45,66 @@
                         TextColor="{DynamicResource PopupHeaderColor}"
                         VerticalOptions="Center" />
                 </pancakeview:PancakeView>
-                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <StackLayout
-                        x:Name="DeleteForMe"
-                        Margin="0,20,0,20"
-                        Padding="0"
-                        HorizontalOptions="StartAndExpand"
-                        Orientation="Vertical">
-                        <Image
-                            x:Name="DeleteForMe_Image"
-                            HeightRequest="65"
-                            Source="{utils:ImageResourceExtension ic_delete_for_me.png}"
-                            WidthRequest="65" />
-                        <local2:CustomLabel
-                            x:Name="DeleteForMe_Text"
-                            FontFamily="PoppinsMedium"
-                            FontSize="14"
-                            HorizontalOptions="CenterAndExpand"
-                            Text="{x:Static local1:Resources.Dictionary.DeleteFromMe}"
-                            TextColor="{DynamicResource WhiteColor}"
-                            VerticalOptions="CenterAndExpand" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DeleteForMe_Clicked" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                <StackLayout
+                    Margin="0,10,0,10"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
                     <StackLayout
                         x:Name="DeleteForEveryone"
-                        Margin="20,20,0,20"
+                        Margin="20,0,0,0"
                         Padding="0"
-                        HorizontalOptions="CenterAndExpand"
+                        HorizontalOptions="Start"
                         Orientation="Vertical">
-                        <Image
-                            x:Name="DeleteForEveryone_Image"
-                            HeightRequest="65"
-                            Source="{utils:ImageResourceExtension ic_delete_for_everyone.png}"
-                            WidthRequest="65" />
+
                         <local2:CustomLabel
                             x:Name="DeleteForEveryone_Text"
                             FontFamily="PoppinsMedium"
                             FontSize="14"
                             HorizontalOptions="CenterAndExpand"
                             Text="{x:Static local1:Resources.Dictionary.DeleteFromEveryone}"
-                            TextColor="{DynamicResource WhiteColor}" />
+                            TextColor="{DynamicResource Color1}" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DeleteForEveryone_Clicked" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout
                         x:Name="Cancel"
-                        Margin="20,20,0,20"
+                        Margin="0,0,0,0"
                         Padding="0"
                         HorizontalOptions="EndAndExpand"
                         IsVisible="True"
-                        Orientation="Vertical">
-                        <Image
-                            x:Name="CancelImage"
-                            HeightRequest="65"
-                            Source="{utils:ImageResourceExtension ic_popup_cancel.png}"
-                            WidthRequest="65" />
+                        Orientation="Horizontal">
+
                         <local2:CustomLabel
                             x:Name="CancelText"
-                            Margin="0,0,0,0"
+                            Margin="0,0,10,0"
                             FontFamily="PoppinsMedium"
                             FontSize="14"
                             HorizontalOptions="CenterAndExpand"
                             Text="{x:Static local1:Resources.Dictionary.Cancel}"
-                            TextColor="{DynamicResource WhiteColor}" />
+                            TextColor="{DynamicResource Color1}" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Cancel_Clicked" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="DeleteForMe"
+                        Margin="0,0,20,0"
+                        Padding="0"
+                        HorizontalOptions="End"
+                        Orientation="Vertical">
+
+                        <local2:CustomLabel
+                            x:Name="DeleteForMe_Text"
+                            FontFamily="PoppinsMedium"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{x:Static local1:Resources.Dictionary.DeleteFromMe}"
+                            TextColor="{DynamicResource Color1}"
+                            VerticalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DeleteForMe_Clicked" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </StackLayout>

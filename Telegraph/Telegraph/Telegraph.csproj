@@ -105,9 +105,6 @@
     <Compile Update="PopupViews\SuccessPopup.xaml.cs">
       <DependentUpon>SuccessPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\FlyoutMenuPage.xaml.cs">
-      <DependentUpon>FlyoutMenuPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -183,7 +180,6 @@
     <None Include="Views\QRScanAndShowPage.xaml" />
     <None Include="Views\TermsAndConditionsPage.xaml" />
     <None Include="Views\UupLoginSignupPage.xaml" />
-    <None Include="Views\CallPage.xaml" />
     <None Include="Views\MainPage.xaml" />
     <None Include="Views\QRCodeScanPage.xaml" />
     <None Include="Views\TextSizePage.xaml" />

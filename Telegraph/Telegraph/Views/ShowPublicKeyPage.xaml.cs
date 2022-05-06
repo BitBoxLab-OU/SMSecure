@@ -18,7 +18,7 @@ namespace Telegraph.Views
             _isPassphrase = Preferences.Get("isPassphrase", false);
 
             if ((DateTime.Now - logTime).TotalDays <= 7 && !_isPassphrase)
-				DoItLaterButton.IsVisible = true;
+                DoItLaterButton.IsVisible = true;
 
             string _key = NavigationTappedPage.Context.My.GetPassphrase();
             KeyLabel.Text = _key;
@@ -45,7 +45,7 @@ namespace Telegraph.Views
             sender.HandleButtonSingleClick();
             var page = new VerifyPassphrase();
             page.CloseEventHandler += ClosePage;
-            Application.Current.MainPage.Navigation.PushAsync(page,false);
+            Application.Current.MainPage.Navigation.PushAsync(page, false);
         }
 
         private void ClosePage()

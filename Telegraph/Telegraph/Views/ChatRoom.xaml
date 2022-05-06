@@ -69,7 +69,7 @@
                         LineBreakMode="TailTruncation"
                         MaxLines="1"
                         Text=""
-                        TextColor="{x:DynamicResource WhiteColor}" />
+                        TextColor="{x:DynamicResource Color1}" />
                     <local1:CustomLabel
                         x:Name="LastSeen"
                         Margin="0,-12,0,0"
@@ -83,40 +83,7 @@
                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Username_Clicked" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout
-                    Margin="0,0,10,0"
-                    HorizontalOptions="EndAndExpand"
-                    Orientation="Horizontal"
-                    VerticalOptions="CenterAndExpand">
-                    <StackLayout
-                        x:Name="VideoButton"
-                        Margin="0,4,0,0"
-                        Padding="10">
-                        <Image
-                            x:Name="VideoIcon"
-                            Margin="0,0,10,0"
-                            HeightRequest="21"
-                            Source="{utils:ImageResourceExtension ic_new_video_call.png}"
-                            WidthRequest="22" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="VideoCall_Clicked" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <StackLayout
-                        x:Name="AudioButton"
-                        Margin="0,3,0,0"
-                        Padding="10">
-                        <Image
-                            x:Name="PhoneIcon"
-                            Margin="0,0,4,0"
-                            HeightRequest="22"
-                            Source="{utils:ImageResourceExtension ic_new_phone_call.png}"
-                            WidthRequest="21" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="AudioCall_Clicked" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </StackLayout>
+
             </StackLayout>
 
             <StackLayout
@@ -145,7 +112,7 @@
                     HorizontalOptions="FillAndExpand"
                     HorizontalTextAlignment="Start"
                     Text="0"
-                    TextColor="{DynamicResource WhiteColor}"
+                    TextColor="{DynamicResource Color2}"
                     VerticalOptions="Center"
                     VerticalTextAlignment="Start" />
                 <ImageButton
@@ -251,7 +218,7 @@
                 HorizontalOptions="Center"
                 IsVisible="False"
                 VerticalOptions="End">
-                <local1:CustomLabel Text="{x:Static local3:Resources.Dictionary.YouHaveBlockedUsers}" TextColor="{DynamicResource WhiteColor}" />
+                <local1:CustomLabel Text="{x:Static local3:Resources.Dictionary.YouHaveBlockedUsers}" TextColor="{DynamicResource Color1}" />
             </Frame>
 
             <local2:Composer

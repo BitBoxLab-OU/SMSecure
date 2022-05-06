@@ -16,7 +16,7 @@ namespace Telegraph.Views
 		private FileResult _mediaFile;
 		public LoginPage()
 		{
-			InitializeComponent();		
+			InitializeComponent();
 			Username.Keyboard = Keyboard.Chat;
 		}
 
@@ -41,7 +41,7 @@ namespace Telegraph.Views
 					var stream = await _mediaFile.OpenReadAsync();
 
 					UserProfilePhoto.Source = ImageSource.FromStream(() => stream);
-                    //UserProfilePhotoBg.BorderColor = Color.Yellow;
+					//UserProfilePhotoBg.BorderColor = Color.Yellow;
 				}
 				else
 				{
@@ -64,12 +64,12 @@ namespace Telegraph.Views
 				ShowProgressDialog();
 				var timer = new System.Threading.Timer((object obj) => { Device.BeginInvokeOnMainThread(() => Save()); }, null, 100, System.Threading.Timeout.Infinite);
 			}
-        }
+		}
 
 		private void Save()
 		{
 			Application.Current.MainPage.Navigation.PushAsync(new NavigationTappedPage(Username.Text, _mediaFile)); // normal runn
-			var a = new List<Page>(Navigation.NavigationStack );
+			var a = new List<Page>(Navigation.NavigationStack);
 			foreach (Page page in a)
 				Navigation.RemovePage(page);
 		}
@@ -86,7 +86,7 @@ namespace Telegraph.Views
 		{
 			if (checkBox.IsChecked)
 				return true;
-            else
+			else
 				this.DisplayToastAsync(Localization.Resources.Dictionary.PleaseReadAndAcceptTermsAndConditionToContinue);
 			return false;
 		}

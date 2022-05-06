@@ -93,8 +93,6 @@ namespace ChatComposer.PopupViews
         {
             PublicKeyFrame.IsVisible = PublicKey_Label.IsVisible = isQrCodeEmpty;
             UserName_Label.IsVisible = NameFrame.IsVisible = !isQrCodeEmpty;
-            AddButton.IsVisible = NameFrame.IsVisible = !isQrCodeEmpty;
-
         }
 
         private void Add_Clicked(object sender, EventArgs e)

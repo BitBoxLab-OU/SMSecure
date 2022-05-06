@@ -1,14 +1,12 @@
 using CustomViewElements;
-using System;
 using System.IO;
 using System.Threading.Tasks;
-using Telegraph.DesignHandler;
-using Telegraph.Services;
-using Utils;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using ZXing;
+using System;
+using Telegraph.Services;
 
 namespace Telegraph.Views
 {
@@ -31,10 +29,6 @@ namespace Telegraph.Views
                     Task<ImageSource> result = Task<ImageSource>.Factory.StartNew(() => ImageSource.FromStream(() => new MemoryStream(_image)));
                     User_Photo.Source = await result;
                 }
-                else
-                {
-                    User_Photo.Source = DesignResourceManager.GetImageSource("ic_add_contact_profile.png");
-                }
             }
             catch (Exception)
             {
@@ -56,7 +50,6 @@ namespace Telegraph.Views
 
         private async void CodeScanner_Clicked(object sender, EventArgs e)
         {
-            sender.HandleButtonSingleClick();
             if (await PermissionManager.CheckCameraPermission())
             {
                 var qrScanPage = new QRCodeScanPage();
@@ -81,12 +74,7 @@ namespace Telegraph.Views
             Username.Text = _username;
             PublicKey.Text = _publickey;
             SetQRcode();
-            if (_image == null)
-            {
-                _image = NavigationTappedPage.Context.My.GetAvatar();
-                _ = ImageDisplayAsync();
-            }
-            else if (!_image.SequenceEqual(NavigationTappedPage.Context.My.GetAvatar()))
+            if (_image != NavigationTappedPage.Context.My.GetAvatar())
             {
                 _image = NavigationTappedPage.Context.My.GetAvatar();
                 _ = ImageDisplayAsync();
@@ -99,23 +87,29 @@ namespace Telegraph.Views
             App.ReEstablishConnection();
         }
 
-        private void Copy_Clicked(object sender, EventArgs e_)
+        private void Copy_Clicked(object _, EventArgs e_)
         {
-            sender.HandleButtonSingleClick(500);
             if (_publickey != null)
             {
                 Clipboard.SetTextAsync(EncryptedMessaging.ContactMessage.GetMyQrCode(NavigationTappedPage.Context));
                 this.DisplayToastAsync(Localization.Resources.Dictionary.CopiedToClipboard);
             }
+
         }
 
-        private async void Send_Clicked(object sender, EventArgs e)
+        private async void Send_Clicked(object _, EventArgs e)
         {
-            sender.HandleButtonSingleClick();
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = EncryptedMessaging.ContactMessage.GetMyQrCode(NavigationTappedPage.Context)
             }).ConfigureAwait(true);
         }
+
+
+        private void Toolbar_OnBackBtnClicked(object _, EventArgs e)
+        {
+            OnBackButtonPressed();
+        }
+
     }
 }

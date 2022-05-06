@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:drawable="@color/splashScreenBackground"
-    android:gravity="fill" />
+  <item>         <color android:color="#303135 " />
+    </item>
 
-<item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:drawable="@drawable/ic_splash_screen1"
-        />
- />
+    <item android:drawable="@drawable/ic_splash_screen1" android:gravity="center" android:height="256dp" android:width="256dp"/>
 
 </layer-list>

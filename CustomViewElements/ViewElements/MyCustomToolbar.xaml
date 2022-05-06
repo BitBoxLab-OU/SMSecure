@@ -91,8 +91,8 @@
                             FontSize="18"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="{x:Static local:Resources.Dictionary.Search}"
-                            PlaceholderColor="{x:DynamicResource BackgroundSecondary}"
-                            TextColor="{x:DynamicResource ToolbarTitleColor}" />
+                            PlaceholderColor="{x:DynamicResource Color2}"
+                            TextColor="{x:DynamicResource Color2}" />
                     </StackLayout>
                 </Frame>
                 <ImageButton

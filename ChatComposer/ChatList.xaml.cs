@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using CustomViewElements;
 using EncryptedMessaging;
-using Rg.Plugins.Popup.Services;
+using Utils;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
-using XamarinShared.ViewCreator;
 using static EncryptedMessaging.Contacts;
+
+
 
 namespace ChatComposer
 {
@@ -17,11 +16,10 @@ namespace ChatComposer
     {
         public delegate void ItemClickEvent(Contact contact, ChatItemClickType chatItemClick);
         public delegate void PlaceHolderVisibility(bool isVisible);
+
         public delegate void ToolbarTitleChangeEvent(bool isContactSelected);
         public delegate void CreateGroupEvent(List<Contact> contacts);
         public delegate void ShowPopUpEvent();
-        private ItemClickEvent _onChatItemClicked;
-        private PlaceHolderVisibility _placeHolderVisibility;
         private ToolbarTitleChangeEvent _toolbarTitleChangeEvent;
         private CreateGroupEvent _createGroupEvent;
         private Action _showPopUpEvent;
@@ -30,30 +28,43 @@ namespace ChatComposer
         public Observable<Contact> OriginContacts { set; get; }
         public Observable<Contact> SelectedContacts { set; get; }
 
-
-
-
+        private ItemClickEvent _onChatItemClicked;
+        private PlaceHolderVisibility _placeHolderVisibility;
+        private Observable<Contact> _contacts;
         private SwipeView _lastSwipeView;
+
+        
+
         private bool isPlaceholderVisible
         {
             set
-            {
-                if (_placeHolderVisibility != null)
-                    _placeHolderVisibility(value);
+            { 
+                NoResultPage.IsVisible = value;
 
+                NoItemPage.IsVisible = !value;
             }
         }
 
         private string _searchQuery = "";
+
+        //private Contact _lastItemSelected;
+
         public ChatList()
         {
-            InitializeComponent();
-            NextButton.Click(Next_Clicked);
+            try
+            {
+                InitializeComponent();
+                NextButton.Click(Next_Clicked);
 
+            }
+            catch (Exception e)
+            {
+                
+                InitializeComponent(); // Some bugs on xamarin forms load view
+            }
+          
 
         }
-
-
 
         public void Init(ItemClickEvent chatItemClicked, Observable<Contact> contacts, ToolbarTitleChangeEvent titleChangeEvent, CreateGroupEvent createGroupEvent, Action addButtonClickEvent, Action showPopUpEvent)
         {
@@ -68,35 +79,30 @@ namespace ChatComposer
             _addButtonClickEvent = addButtonClickEvent;
             FilterContacts(_searchQuery);
             BindingContext = this;
-            isPlaceholderVisible = OriginContacts.Count == 0;
             contacts.CollectionChanged += Contacts_CollectionChanged;
             NextButton.IsVisible = true;
             Next.Source = Utils.Icons.IconProvider.Invoke("ic_add.png");
 
         }
 
-        private void SelectedContacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void ClearUserSelection()
         {
-
-            //NextButton.IsVisible = SelectedContacts.Count != 0;
-            if (SelectedContacts.Count == 0)
-                Next.Source = Utils.Icons.IconProvider.Invoke("ic_add.png");
-            else if (SelectedContacts.Count == 1)
-                Next.Source = Utils.Icons.IconProvider.Invoke("ic_next_disabled.png");
-            else if (SelectedContacts.Count == 2)
-                Next.Source = Utils.Icons.IconProvider.Invoke("ic_next_new.png");
-            _toolbarTitleChangeEvent?.Invoke(SelectedContacts.Count != 0);
+            SelectedContacts.Clear();
         }
 
         private void Contacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            isPlaceholderVisible = OriginContacts.Count == 0;
+
             FilterContacts(_searchQuery);
+            //if (ItemsListView?.DataSource != null && !string.IsNullOrWhiteSpace(_searchQuery))
+            //    isPlaceholderVisible = ItemsListView.DataSource.Items.Count == 0;
+            //else
+            //    isPlaceholderVisible = _contacts.Count == 0;
         }
 
         private void Clear_Clicked(object sender, EventArgs e)
         {
-
+            sender.HandleButtonSingleClick();
             if (sender == null) return;
             SwipeItemView item = sender as SwipeItemView;
             if (item == null || item.CommandParameter == null) return;
@@ -112,6 +118,7 @@ namespace ChatComposer
 
         private void Delete_Clicked(object sender, EventArgs e)
         {
+            sender.HandleButtonSingleClick();
             if (sender == null) return;
             SwipeItemView item = sender as SwipeItemView;
             if (item == null || item.CommandParameter == null) return;
@@ -122,6 +129,7 @@ namespace ChatComposer
 
         private void Edit_Clicked(object sender, EventArgs e)
         {
+            sender.HandleButtonSingleClick();
             if (sender == null) return;
             SwipeItemView item = sender as SwipeItemView;
             if (item == null || item.CommandParameter == null) return;
@@ -129,6 +137,7 @@ namespace ChatComposer
             if (contact != null)
                 _onChatItemClicked(contact, ChatItemClickType.EDIT);
         }
+
 
         public void FilterContacts(string query)
         {
@@ -138,6 +147,7 @@ namespace ChatComposer
             if (string.IsNullOrWhiteSpace(_searchQuery))
             {
                 _searchQuery = string.Empty;
+                isPlaceholderVisible = false;
                 if (ItemsListView.ItemsSource != OriginContacts)
                     ItemsListView.ItemsSource = OriginContacts;
                 return;
@@ -149,6 +159,9 @@ namespace ChatComposer
             }
 
             _searchQuery = _searchQuery.ToLowerInvariant();
+            
+
+
 
             var filteredItems = OriginContacts.Where(value => value.Name.ToLowerInvariant().Contains(_searchQuery)).ToList();
 
@@ -166,8 +179,20 @@ namespace ChatComposer
                     InsertCall(value);
                 }
             }
+            isPlaceholderVisible = FilteredContacts.Count == 0;
         }
-        //this method is used for insert to list;
+
+        public void ClearState()
+        {
+            ItemsListView.SelectedItem = null;
+        }
+
+        public void ResetSwipe()
+        {
+          
+        }
+
+
         private void InsertCall(Contact value)
         {
             Contact contact = FilteredContacts.FirstOrDefault(c => c.LastMessageTime.CompareTo(value.LastMessageTime) < 0);
@@ -177,31 +202,62 @@ namespace ChatComposer
                 FilteredContacts.Add(value);
 
         }
-
         private void RemoveDeletedContacts()
         {
             foreach (Contact contact in new List<Contact>(OriginContacts))
                 if (!OriginContacts.Contains(contact))
                     FilteredContacts.Remove(contact);
         }
-
-
-        public void ClearState()
-        {
-            ItemsListView.SelectedItem = null;
-        }
-
-        public void ResetSwipe()
-        {
-        }
-
         public override void OnAppearing()
         {
-
         }
 
         public override void OnDisappearing()
         {
+        }
+        
+
+
+
+
+
+
+        private void ItemsListView_QueryItemSize(object sender, Syncfusion.ListView.XForms.QueryItemSizeEventArgs e)
+        {
+            var size = e.ItemSize;
+        }
+
+        private bool FilterContacts(object obj)
+        {
+            var contacts = obj as Contact;
+            if (contacts.Name.ToLower().Contains(_searchQuery.ToLower()))
+                return true;
+            else
+                return false;
+        }
+
+        void SwipeView_SwipeStarted(System.Object sender, Xamarin.Forms.SwipeStartedEventArgs e)
+        {
+            if (_lastSwipeView != sender as SwipeView)
+                _lastSwipeView?.Close();
+            _lastSwipeView = sender as SwipeView;
+        }
+
+        private void SelectedContacts_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+
+            //NextButton.IsVisible = SelectedContacts.Count != 0;
+
+
+            Console.Write(SelectedContacts.Count);
+            
+            if (SelectedContacts.Count == 0  )
+                Next.Source = Utils.Icons.IconProvider.Invoke("ic_add.png");
+            else if (SelectedContacts.Count == 1)
+                Next.Source = Utils.Icons.IconProvider.Invoke("ic_next_disabled.png");
+            else if (SelectedContacts.Count == 2)
+                Next.Source = Utils.Icons.IconProvider.Invoke("ic_next_new.png");
+            _toolbarTitleChangeEvent?.Invoke(SelectedContacts.Count != 0);
         }
 
         private void ItemsListView_ItemTapped(object sender, MR.Gestures.TapEventArgs e)
@@ -224,20 +280,12 @@ namespace ChatComposer
 
         }
 
-
-        void SwipeView_SwipeStarted(System.Object sender, Xamarin.Forms.SwipeStartedEventArgs e)
-        {
-            if (_lastSwipeView != sender as SwipeView)
-                _lastSwipeView?.Close();
-            _lastSwipeView = sender as SwipeView;
-        }
-
         private void ListViewItem_LongPressed(object sender, MR.Gestures.LongPressEventArgs e)
         {
             Contact contact = e.Sender.LongPressingCommandParameter as Contact;
             var lyt = sender as MR.Gestures.StackLayout;
             lyt.FindByName<Image>("Added").IsVisible = !lyt.FindByName<Image>("Added").IsVisible;
-            if (contact == null) return;
+            
             if (!SelectedContacts.Contains(contact)) SelectedContacts.Add(contact);
             else SelectedContacts.Remove(contact);
             return;
@@ -245,20 +293,26 @@ namespace ChatComposer
 
         async private void Next_Clicked(object sender, EventArgs args)
         {
-            XamarinShared.ViewCreator.Utils.HandleButtonSingleClick(sender);
+            //XamarinShared.ViewCreator.Utils.HandleButtonSingleClick(sender);
+            sender.HandleButtonSingleClick();
             if (SelectedContacts.Count() == 0)
             {
                 // NextButton.IsVisible = false;
                 _showPopUpEvent.Invoke();
 
-
-
             }
             else if (SelectedContacts.Count() > 1)
+            {
                 _createGroupEvent?.Invoke(SelectedContacts.ToList());
-            //else
-            //    this.DisplayToastAsync(Localization.Resources.Dictionary.YouNeedToSelectAtLeastTwoUser);
+            }else
+                this.DisplayToastAsync(Localization.Resources.Dictionary.YouNeedToSelectAtLeastTwoUser);
+
         }
+
+
+
+
+
 
     }
 

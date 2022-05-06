@@ -8,12 +8,12 @@
     <Color x:Key="Background">#E5E5E5</Color>
     <Color x:Key="BackgroundSecondary">#8D8D8D</Color>
     <Color x:Key="Foreground">#000000</Color>
-    <Color x:Key="BoxView">#FFA500</Color>
+    <Color x:Key="BoxView">#303135</Color>
     <Color x:Key="Theme">#303135</Color>
     <Color x:Key="Theme1">#303135</Color>
     <Color x:Key="Color1">#FFFFFF</Color>
     <Color x:Key="Color2">#303135</Color>
-    <Color x:Key="Color3">#303133</Color>
+    <Color x:Key="Color3">#303135</Color>
     <Color x:Key="WhiteColor">#000000</Color>
     <Color x:Key="RedColor">#FF0A00</Color>
     <Color x:Key="Alert">#FD5027</Color>
@@ -26,9 +26,10 @@
     <Color x:Key="Trigger">#8D8D8D</Color>
     <Color x:Key="Border">#8D8D8D</Color>
     <Color x:Key="PhoneContactBottom">#E5E5E5</Color>
-
     <Color x:Key="Color4">#F6C50D</Color>
     <Color x:Key="TextButtonColor">#006AC1</Color>
+
+
     <!--  Note: Use the Alert color for alarms only  -->
 
     <!--  General (Obsolete)  -->

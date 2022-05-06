@@ -10,8 +10,6 @@ using Utils;
 using CustomViewElements;
 using Telegraph.DesignHandler;
 using Xamarin.CommunityToolkit.Extensions;
-using Plugin.Fingerprint;
-using Plugin.Fingerprint.Abstractions;
 
 namespace Telegraph.Views
 {
@@ -22,16 +20,14 @@ namespace Telegraph.Views
         private string _firstPin;
         private bool _isPinConfirmEnable;
         private string _lockPin;
-        private int count = 0;
         public CreatePinPage()
         {
             InitializeComponent();
             _lockPin = Setup.GetSecureValue("LockPin");
             if (_lockPin != null)
             {
+                TopLabel.IsVisible = true;
                 TopLabel.Text = Localization.Resources.Dictionary.PleaseEnterYourPin;
-                Next_button.IsVisible = false;
-                Fingerprint_button.IsVisible = true;
             }
             else
             {
@@ -95,35 +91,6 @@ namespace Telegraph.Views
             frame.BackgroundColor = DesignResourceManager.GetColorFromStyle("Color1");
         }
 
-        private async void Fingerprint_Clicked(object sender, EventArgs e)
-        {
-            sender.HandleButtonSingleClick();
-            var accessibility = await CrossFingerprint.Current.IsAvailableAsync();
-
-            if (!accessibility)
-            {
-                await DisplayAlert(Localization.Resources.Dictionary.Information, Localization.Resources.Dictionary.BiometricAuthenticationNotAvailable, Localization.Resources.Dictionary.Ok); return;
-            }
-
-            var authResult = await CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration(Localization.Resources.Dictionary.Authentication, Localization.Resources.Dictionary.ConfirmYourIdentity));
-            if (authResult.Authenticated)
-            {
-                foreach (Frame frame in PinGrid.Children)
-                {
-                    StuffedPin(frame);
-                }
-                ShowProgressDialog();
-                new System.Threading.Timer((object obj) => { Device.BeginInvokeOnMainThread(() => OpenNavigationPage()); }, null, 100, System.Threading.Timeout.Infinite);
-            }
-
-         
-        }
-
-        private void StuffedPin(Frame frame)
-        {
-            frame.IsEnabled = true;
-            frame.BackgroundColor = DesignResourceManager.GetColorFromStyle("Theme");
-        }
         private void CheckLockPin()
         {
             var numberOfAttempts = Convert.ToInt32(Setup.GetSecureValue("NumberOfAttempts"));
@@ -136,8 +103,6 @@ namespace Telegraph.Views
             if (numberOfAttempts != 0 && numberOfAttempts % Defaults.MaxNumberOfLoginAttempts == 0 && Math.Abs(ConvertToUnixTimestamp() - lastAttemptTime) < 600)
             {
                 this.DisplayToastAsync(Localization.Resources.Dictionary.YouHaveEnteredSixtimeswrongPinPleaseWait + Math.Ceiling((Math.Abs(lastAttemptTime - ConvertToUnixTimestamp() + 600)) / 60.0) + " " + Localization.Resources.Dictionary.Minutes);
-                Shake();
-                ClearAllPins();
             }
             else
             {
@@ -151,31 +116,19 @@ namespace Telegraph.Views
                 {
                     SaveValues(numberOfAttempts + 1);
                     this.DisplayToastAsync(Localization.Resources.Dictionary.WrongPinYouHave + (Defaults.MaxNumberOfLoginAttempts - numberOfAttempts % 6) + " " + Localization.Resources.Dictionary.attempts);
-                    Shake();
                     ClearAllPins();
                 }
             }
         }
 
-        async void Shake()
-        {
-            uint timeout = 50;
-            await PinGrid.TranslateTo(-15, 0, timeout);
-            await PinGrid.TranslateTo(15, 0, timeout);
-            await PinGrid.TranslateTo(-10, 0, timeout);
-            await PinGrid.TranslateTo(10, 0, timeout);
-            await PinGrid.TranslateTo(-5, 0, timeout);
-            await PinGrid.TranslateTo(5, 0, timeout);
-            PinGrid.TranslationX = 0;
-        }
-
         private void OpenNavigationPage()
         {
+            Setup.SetSecureValue("LockPin", GetHashString(_firstPin));
             SaveValues(0);
             Application.Current.MainPage = new NavigationPage(new NavigationTappedPage());
 
             if (Device.RuntimePlatform == Device.iOS)
-                DependencyService.Get<IStatusBarColor>().SetStatusbarColor(DesignResourceManager.GetColorFromStyle("Color1"));
+                DependencyService.Get<IStatusBarColor>().SetStatusbarColor(DesignResourceManager.GetColorFromStyle("Color2"));
         }
 
         private void SaveValues(int numberOfAttemps)
@@ -185,7 +138,6 @@ namespace Telegraph.Views
         }
         private void Number_Button_Clicked(object sender, EventArgs _)
         {
-            count++;
             var s = (sender as Button).Text;
             if (FillPin())
             {
@@ -193,12 +145,6 @@ namespace Telegraph.Views
                     _firstPin += s;
                 else
                     _confirmPin += s;
-
-            }
-            if (_lockPin != null && count == 5)
-            {
-                CheckLockPin();
-                count = 0;
             }
         }
 
@@ -211,7 +157,6 @@ namespace Telegraph.Views
                 if (frame.IsEnabled)
                 {
                     ClearPin(frame);
-                    count--;
                     break;
                 }
             }
@@ -259,7 +204,7 @@ namespace Telegraph.Views
                 ClearAllPins();
             }
             else
-                Navigation.PopAsync(false);
+                Navigation.PopAsync(true);
             return false;
         }
 
@@ -277,10 +222,6 @@ namespace Telegraph.Views
             return sb.ToString();
         }
 
-        private void Back_Clicked(object sender, EventArgs e)
-        {
-            sender.HandleButtonSingleClick(400);
-            OnBackButtonPressed();
-        }
+        private void Back_Clicked(object _, EventArgs e) => OnBackButtonPressed();
     }
 }

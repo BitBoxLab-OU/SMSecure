@@ -3,16 +3,20 @@
     x:Class="Telegraph.Views.GroupUserSelectPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:Localization;assembly=Localization"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:views="clr-namespace:CustomViewElements;assembly=CustomViewElements"
-    xmlns:dh="clr-namespace:Telegraph.DesignHandler"
     ios:Page.UseSafeArea="true">
     <RelativeLayout>
 
-        <StackLayout Spacing="0" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" 
-                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}">
+        <StackLayout
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width}"
+            Spacing="0">
             <StackLayout
                 x:Name="ToolbarSelectUserLayout"
                 BackgroundColor="{DynamicResource Color2}"
@@ -273,14 +277,18 @@
                         VerticalOptions="FillAndExpand" />
                 </StackLayout>
             </Frame>
-       
+
         </StackLayout>
 
         <StackLayout
             x:Name="NextButton"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Constant=-80}" 
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Constant=-80}"
             HorizontalOptions="End"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Constant=-80}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Constant=-80}"
             VerticalOptions="End">
             <Image
                 x:Name="Next"

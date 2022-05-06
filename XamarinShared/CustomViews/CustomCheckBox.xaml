@@ -7,7 +7,7 @@
         <Ellipse
             x:Name="BgRectangle"
             HeightRequest="20"
-            Stroke="#FFD62C"
+            Stroke="#AA303135"
             StrokeThickness="2"
             WidthRequest="20">
 

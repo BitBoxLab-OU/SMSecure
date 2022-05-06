@@ -3,9 +3,9 @@ using Rg.Plugins.Popup.Services;
 using System.Collections.Generic;
 using EncryptedMessaging;
 using XamarinShared;
+using XamarinShared.ViewCreator;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Extensions;
-using Utils;
 
 namespace Telegraph.PopupViews
 {
@@ -23,30 +23,28 @@ namespace Telegraph.PopupViews
                 DeleteForEveryone.IsVisible = false;
             }
         }
-    
+
         private async void DeleteForMe_Clicked(object sender, System.EventArgs e)
         {
-            sender.HandleButtonSingleClick();
             CheckMessageDeleted();
 
-            if (_message != null && XamarinShared.ViewCreator.MessageViewCreator.SelectedMessageHashCode != _message.GetHashCode())
+            if (_message != null && MessageViewCreator.SelectedMessageHashCode != _message.GetHashCode())
                 ChatPageSupport.RemoveMessages(_message, false);
             else
                 await this.DisplayToastAsync(Localization.Resources.Dictionary.SelectedMessageCannotBeDeleted);
-            await PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAsync(true);
 
         }
 
         private async void DeleteForEveryone_Clicked(object sender, System.EventArgs e)
         {
-            sender.HandleButtonSingleClick();
             CheckMessageDeleted();
 
-            if (_message != null && XamarinShared.ViewCreator.MessageViewCreator.SelectedMessageHashCode != _message.GetHashCode())
+            if (_message != null && MessageViewCreator.SelectedMessageHashCode != _message.GetHashCode())
                 ChatPageSupport.RemoveMessages(_message, true);
             else
                 await this.DisplayToastAsync(Localization.Resources.Dictionary.SelectedMessageCannotBeDeleted);
-            await PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAsync(true);
         }
 
         private void CheckMessageDeleted()
@@ -54,15 +52,11 @@ namespace Telegraph.PopupViews
             if (_message == null)
             {
                 this.DisplayToastAsync(Localization.Resources.Dictionary.MessageAlreadDeleted);
-                PopupNavigation.Instance.PopAsync(false);
+                PopupNavigation.Instance.PopAsync(true);
                 return;
             }
         }
 
-        private void Cancel_Clicked(object sender, System.EventArgs e)
-        {
-            sender.HandleButtonSingleClick(500);
-            PopupNavigation.Instance.PopAsync(false);
-        }
+        private void Cancel_Clicked(object sender, System.EventArgs e) => PopupNavigation.Instance.PopAsync(true);
     }
 }

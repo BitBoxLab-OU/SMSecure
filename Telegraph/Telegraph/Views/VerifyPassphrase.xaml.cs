@@ -53,8 +53,8 @@ namespace Telegraph.Views
 
         private void FrameAddTapped(object sender, EventArgs e)
         {
-            Frame frame = (Frame) sender;
-            Label label = (Label) frame.Content;
+            Frame frame = (Frame)sender;
+            Label label = (Label)frame.Content;
             if (!string.IsNullOrEmpty(label.Text.Trim()))
             {
                 for (int i = 0; i < filledGaps.Length; i++)
@@ -76,8 +76,8 @@ namespace Telegraph.Views
             {
                 if (stackLayout == null)
                     return false;
-                var fr = (Frame) stackLayout.Children[1];
-                var label = (Label) fr.Content;
+                var fr = (Frame)stackLayout.Children[1];
+                var label = (Label)fr.Content;
                 var b = string.IsNullOrWhiteSpace(label.Text);
                 if (b)
                 {
@@ -91,7 +91,7 @@ namespace Telegraph.Views
         private void SetContinueButtonStatus()
         {
             var passphrase = isPassphraseFilled();
-            if (passphrase&& !ContinueButton.IsEnabled)
+            if (passphrase && !ContinueButton.IsEnabled)
             {
                 ContinueButton.BackgroundColor = DesignResourceManager.GetColorFromStyle("Theme");
                 ContinueButton.TextColor = DesignResourceManager.GetColorFromStyle("Color1");
@@ -107,9 +107,9 @@ namespace Telegraph.Views
 
         private void FrameRemoveTapped(object sender, EventArgs e)
         {
-            StackLayout stackLayout = (StackLayout) sender;
-            Frame frame = (Frame) stackLayout.Children[1];
-            Label label = (Label) frame.Content;
+            StackLayout stackLayout = (StackLayout)sender;
+            Frame frame = (Frame)stackLayout.Children[1];
+            Label label = (Label)frame.Content;
             if (!string.IsNullOrEmpty(label.Text.Trim()))
             {
                 for (int i = 0; i < filledGaps.Length; i++)
@@ -132,7 +132,7 @@ namespace Telegraph.Views
 
             if (frame != null)
             {
-                ((Label) frame.Content).Text = word;
+                ((Label)frame.Content).Text = word;
                 return;
             }
 
@@ -153,9 +153,9 @@ namespace Telegraph.Views
 
             if (Gaps.Children.Count - 1 >= index && Gaps.Children.Count > 0)
             {
-                StackLayout layout = (StackLayout) Gaps.Children[index];
-                Frame fr = (Frame) layout.Children[1];
-                Label label = (Label) fr.Content;
+                StackLayout layout = (StackLayout)Gaps.Children[index];
+                Frame fr = (Frame)layout.Children[1];
+                Label label = (Label)fr.Content;
                 label.Text = word;
                 return layout;
             }
@@ -250,8 +250,8 @@ namespace Telegraph.Views
             {
                 if (stackLayout == null)
                     return false;
-                Frame fr = (Frame) stackLayout.Children[1];
-                Label label = (Label) fr.Content;
+                Frame fr = (Frame)stackLayout.Children[1];
+                Label label = (Label)fr.Content;
                 passPhrase += label.Text + " ";
             }
 

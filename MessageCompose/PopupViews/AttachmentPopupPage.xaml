@@ -28,10 +28,10 @@
         VerticalOptions="EndAndExpand">
         <Frame
             Padding="10"
-            BackgroundColor="{DynamicResource Color2}"
-            BorderColor="{DynamicResource Color2}"
+            BackgroundColor="{DynamicResource Color1}"
+            BorderColor="{DynamicResource Color1}"
             CornerRadius="15"
-            HasShadow="False"
+            HasShadow="True"
             HorizontalOptions="FillAndExpand">
             <Grid
                 x:Name="AttachmentComponents"

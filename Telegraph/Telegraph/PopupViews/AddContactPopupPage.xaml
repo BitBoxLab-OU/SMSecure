@@ -35,7 +35,10 @@
             CornerRadius="15"
             HasShadow="False"
             HorizontalOptions="FillAndExpand">
+
             <StackLayout>
+
+
 
                 <local2:CustomLabel
                     x:Name="UserName_Label"
@@ -44,53 +47,56 @@
                     HorizontalOptions="CenterAndExpand"
                     Text="{x:Static local1:Resources.Dictionary.UserName}"
                     TextColor="{DynamicResource WhiteColor}" />
-                <StackLayout Orientation="Horizontal">
-                    <Frame
-                        x:Name="NameFrame"
-                        Margin="0,12,0,0"
-                        Padding="12,4,12,4"
-                        BackgroundColor="{x:DynamicResource Color1}"
-                        BorderColor="{x:DynamicResource Color2}"
-                        CornerRadius="10"
-                        HasShadow="False"
-                        HeightRequest="42"
-                        MinimumHeightRequest="42"
-                        WidthRequest="400">
+                <Frame
+                    x:Name="NameFrame"
+                    Margin="0,12,0,0"
+                    Padding="12,4,12,4"
+                    BackgroundColor="{x:DynamicResource Color1}"
+                    BorderColor="{x:DynamicResource Color2}"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="42"
+                    HorizontalOptions="FillAndExpand"
+                    MinimumHeightRequest="42">
 
-                        <RelativeLayout HorizontalOptions="FillAndExpand">
-                            <local2:CustomEntry
-                                x:Name="Name"
-                                FontFamily="PoppinsLight"
-                                FontSize="18"
-                                HeightRequest="50"
-                                HorizontalOptions="FillAndExpand"
-                                HorizontalTextAlignment="Start"
-                                Placeholder="{x:Static local1:Resources.Dictionary.UserName}"
-                                PlaceholderColor="{DynamicResource Color2}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                      Property=Width,
-                                                                                      Factor=1,
-                                                                                      Constant=-30}"
-                                TextColor="{DynamicResource Color2}"
-                                VerticalOptions="Start" />
+                    <RelativeLayout HorizontalOptions="FillAndExpand">
+                        <local2:CustomEntry
+                            x:Name="Name"
+                            FontFamily="PoppinsLight"
+                            FontSize="18"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Placeholder="{x:Static local1:Resources.Dictionary.UserName}"
+                            PlaceholderColor="{DynamicResource Color2}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1,
+                                                                                  Constant=-30}"
+                            TextColor="{DynamicResource Color2}"
+                            VerticalOptions="Start" />
+                        <Image
+                            BackgroundColor="AliceBlue"
+                            HeightRequest="24"
+                            HorizontalOptions="Start"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=1,
+                                                                              Constant=-24}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Height,
+                                                                              Factor=0.5,
+                                                                              Constant=-12}"
+                            Source="{local21:ImageResourceExtension ic_add_contact_save.png}"
+                            VerticalOptions="Center"
+                            WidthRequest="24">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Add_Clicked" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </RelativeLayout>
 
-                        </RelativeLayout>
-
-                    </Frame>
-                    <Image
-                        x:Name="AddButton"
-                        Margin="0,10,0,0"
-                        BackgroundColor="Transparent"
-                        HeightRequest="42"
-                        HorizontalOptions="Center"
-                        Source="{local21:ImageResourceExtension ic_add_contact_save.png}"
-                        VerticalOptions="Center"
-                        WidthRequest="42">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Add_Clicked" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
+                </Frame>
                 <local2:CustomLabel
                     x:Name="PublicKey_Label"
                     FontFamily="PoppinsSemiBold"
@@ -110,6 +116,7 @@
                     HorizontalOptions="FillAndExpand"
                     MinimumHeightRequest="42">
 
+
                     <local2:CustomEntry
                         x:Name="PublicKey"
                         FontFamily="PoppinsLight"
@@ -128,14 +135,18 @@
 
                 <Button
                     BackgroundColor="Transparent"
-                    CornerRadius="10"
                     HorizontalOptions="Center"
                     Pressed="Scan_Clicked"
                     Text="Scan Qr"
                     TextColor="{DynamicResource TextButtonColor}"
                     VerticalOptions="CenterAndExpand" />
+
+
             </StackLayout>
         </Frame>
+
+
+
         <Button
             x:Name="SaveButton"
             BackgroundColor="{DynamicResource Color1}"

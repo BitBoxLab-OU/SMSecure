@@ -183,40 +183,40 @@ namespace Telegraph.Views
 
         private void MessageAutoTranslation_StateChanged(object sender, ToggledEventArgs e)
         {
-                if (_contact.IsGroup)
-                {
-                    if (MessageAutoTranslation.IsToggled == true)
-                    {
-                        foreach (var c in _contacts)
-                        {
-                            c.TranslationOfMessages = true;
-                            c.Save();
-                        }
-                    }
-                    else
-                    {
-                        foreach (var c in _contacts)
-                        {
-                            c.TranslationOfMessages = false;
-                            c.Save();
-                        }
-                    }
-                }
+            if (_contact.IsGroup)
+            {
                 if (MessageAutoTranslation.IsToggled == true)
                 {
-                    _contact.TranslationOfMessages = true;
-                    _contact.Save();
+                    foreach (var c in _contacts)
+                    {
+                        c.TranslationOfMessages = true;
+                        c.Save();
+                    }
                 }
                 else
                 {
-                    _contact.TranslationOfMessages = false;
-                    _contact.Save();
+                    foreach (var c in _contacts)
+                    {
+                        c.TranslationOfMessages = false;
+                        c.Save();
+                    }
                 }
+            }
+            if (MessageAutoTranslation.IsToggled == true)
+            {
+                _contact.TranslationOfMessages = true;
+                _contact.Save();
+            }
+            else
+            {
+                _contact.TranslationOfMessages = false;
+                _contact.Save();
+            }
         }
 
-        private void MessageConfirmationButton_StateChanged(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
+        private void MessageConfirmationButton_StateChanged(object sender, ToggledEventArgs e)
         {
-            _contact.SendConfirmationOfReading = !(bool)MessageConfirmationButton.IsToggled;
+            _contact.SendConfirmationOfReading = (bool)MessageConfirmationButton.IsToggled;
             _contact.Save();
         }
 

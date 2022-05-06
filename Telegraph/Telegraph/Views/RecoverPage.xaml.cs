@@ -135,7 +135,7 @@ namespace Telegraph.Views
         private void Save()
         {
             Xamarin.Essentials.Preferences.Set("isPassphrase", true);
-            Application.Current.MainPage.Navigation.PushAsync(new NavigationTappedPage(isAccountRestored: true)); 
+            Application.Current.MainPage.Navigation.PushAsync(new NavigationTappedPage(isAccountRestored: true));
             var a = new List<Page>(Navigation.NavigationStack);
             foreach (Page page in a)
                 Navigation.RemovePage(page);

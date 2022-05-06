@@ -16,7 +16,8 @@ namespace Telegraph.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroupCreatePage : BasePage
     {
-        private readonly List<Contact> _contactsList;     
+        private readonly List<Contact> _contactsList;
+        private Action clearUserSelection;
 
         public GroupCreatePage(List<Contact> contacts)
         {
@@ -33,6 +34,11 @@ namespace Telegraph.Views
             foreach (Contact contact in contacts)
                 publicKeys += contact.PublicKeys;
             Next.SetTag("inactive");
+        }
+
+        public GroupCreatePage(List<Contact> contacts, Action clearUserSelection) : this(contacts)
+        {
+            this.clearUserSelection = clearUserSelection;
         }
 
         private void Save_Clicked(object sender, EventArgs e)
@@ -66,7 +72,8 @@ namespace Telegraph.Views
                 catch (Exception)
                 {
                 }
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
+                //await Application.Current.MainPage.Navigation.PopToRootAsync();
+                clearUserSelection?.Invoke();
                ((App)Application.Current).GetRootPage()?.ShowRequiredView(chatIdRequired: contact.ChatId);
             }
             else

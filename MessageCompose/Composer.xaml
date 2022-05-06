@@ -91,7 +91,8 @@
                     Grid.Column="1"
                     Margin="0,12,6,12"
                     Padding="10,0,10,2"
-                    BackgroundColor="{x:DynamicResource Color2}"
+                    BackgroundColor="{x:DynamicResource Color1}"
+                    BorderColor="{x:DynamicResource Color2}"
                     CornerRadius="20"
                     HasShadow="False"
                     HorizontalOptions="FillAndExpand"
@@ -107,7 +108,7 @@
                         Placeholder="{x:Static local:Resources.Dictionary.TypeAMessage}"
                         PlaceholderColor="{x:DynamicResource PlaceholColor}"
                         TextChanged="MessageText_Changed"
-                        TextColor="{DynamicResource WhiteColor}" />
+                        TextColor="{DynamicResource Color2}" />
                 </Frame>
                 <StackLayout
                     x:Name="Camera"
@@ -265,15 +266,16 @@
                             VerticalOptions="Center"
                             WidthRequest="22" />
                         <Grid
-                            Margin="12,0,45,0"
+                            Margin="12,0,0,0"
                             ColumnSpacing="0"
-                            HorizontalOptions="Fill"
+                            HorizontalOptions="FillAndExpand"
                             VerticalOptions="Center">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label
@@ -289,29 +291,26 @@
                             <Label
                                 x:Name="AudioTime"
                                 Grid.Column="1"
+                                Margin="0,0,45,0"
                                 FontSize="15"
                                 MaxLines="1"
                                 Text="00:00"
                                 TextColor="{x:DynamicResource Audio}"
                                 VerticalOptions="Center" />
+                            <Image
+                                x:Name="Microphone"
+                                Grid.Column="2"
+                                HeightRequest="30"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                WidthRequest="30" />
                         </Grid>
                     </StackLayout>
                 </Frame>
                 <yummy:PancakeView
-                    AbsoluteLayout.LayoutBounds="1,0"
+                    AbsoluteLayout.LayoutBounds="0.93,0"
                     AbsoluteLayout.LayoutFlags="XProportional"
-                    CornerRadius="33">
-                    <forms:AnimationView
-                        x:Name="recorderIcon"
-                        Animation="microphone-animation.json"
-                        AutoPlay="True"
-                        BackgroundColor="{x:DynamicResource Color2}"
-                        HeightRequest="66"
-                        HorizontalOptions="FillAndExpand"
-                        RepeatMode="Infinite"
-                        VerticalOptions="Center"
-                        WidthRequest="66" />
-                </yummy:PancakeView>
+                    CornerRadius="50" />
             </AbsoluteLayout>
             <AbsoluteLayout x:Name="SendState" IsVisible="false">
                 <Frame
@@ -372,15 +371,15 @@
                 </Frame>
                 <ImageButton
                     x:Name="AudioSend"
-                    AbsoluteLayout.LayoutBounds="0.5,-4"
+                    AbsoluteLayout.LayoutBounds="0.5,10"
                     AbsoluteLayout.LayoutFlags="XProportional"
                     BackgroundColor="Transparent"
                     Clicked="AudioSend_ClickedAsync"
-                    HeightRequest="80"
+                    HeightRequest="40"
                     HorizontalOptions="CenterAndExpand"
-                    WidthRequest="80" />
+                    VerticalOptions="End"
+                    WidthRequest="40" />
             </AbsoluteLayout>
         </StackLayout>
     </customViewElements:BaseContentView.Content>
 </customViewElements:BaseContentView>
-

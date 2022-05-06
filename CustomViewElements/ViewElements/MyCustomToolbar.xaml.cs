@@ -64,9 +64,9 @@ namespace CustomViewElements
             RightButtonsLayout.Children.Add(btn, pos, 0);
         }
 
-        public void AddLeftButton(ImageSource imageSource, EventHandler click)
+        public void AddLeftButton(ImageSource imageSource, EventHandler click, int iconHeight = 48, int iconWidth = 48)
         {
-            var btn = CreateImageButton(imageSource);
+            var btn = CreateImageButton(imageSource, iconHeight: iconHeight, iconWidth: iconWidth);
             btn.Clicked += click;
             
             LeftButtonsLayout.Children.Add(btn);
@@ -97,12 +97,12 @@ namespace CustomViewElements
             });
         }
 
-        private ImageButton CreateImageButton(ImageSource imageSource)
+        private ImageButton CreateImageButton(ImageSource imageSource, int iconHeight = 48, int iconWidth = 48)
         {
             return new ImageButton { Source = imageSource,
                 Padding = new Thickness(12),
-                HeightRequest = 48,
-                WidthRequest = 48,
+                HeightRequest = iconHeight,
+                WidthRequest = iconWidth,
                 BackgroundColor = Color.Transparent };
         }
 
@@ -115,7 +115,8 @@ namespace CustomViewElements
         public void ClearViewState()
         {
             pancake.IsVisible = false;
-            RightButtonsLayout.Children[1].IsVisible = true;
+            if (RightButtonsLayout.Children.Count > 1)
+                RightButtonsLayout.Children[1].IsVisible = true;
             InitToolbar();
         }
     }

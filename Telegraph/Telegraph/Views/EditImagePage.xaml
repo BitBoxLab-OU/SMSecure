@@ -34,26 +34,26 @@
                 BackgroundColor="Transparent"
                 ItemTapped="SelectedImages_ItemTapped"
                 Orientation="Horizontal"
-                SelectionBackgroundColor="{DynamicResource Theme}"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                SelectionBackgroundColor="{DynamicResource Theme}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate>
                         <Frame
                             Margin="2"
                             Padding="0"
                             BackgroundColor="Transparent"
-                            CornerRadius="8"
                             HeightRequest="80"
-                            WidthRequest="80">
+                            WidthRequest="80"
+                            CornerRadius="8">
                             <Image
                                 x:Uid="{Binding index}"
                                 Aspect="AspectFill"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
                                 BackgroundColor="Transparent"
                                 HeightRequest="80"
-                                HorizontalOptions="Center"
                                 Source="{Binding imageSource}"
-                                VerticalOptions="Center"
-                                WidthRequest="80" />
+                                WidthRequest="80"/>
                         </Frame>
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>

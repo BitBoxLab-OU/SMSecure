@@ -28,7 +28,6 @@
             <Switch
                 x:Name="AppLock1"
                 Margin="0,0,20,0"
-                HorizontalOptions="End"
                 IsToggled="True"
                 OnColor="{DynamicResource Theme}"
                 Scale="1.3"
@@ -37,7 +36,27 @@
 
         </StackLayout>
 
+        <!--<StackLayout Margin="20,20,0,0" Orientation="Horizontal">
+            <local1:CustomLabel
+                x:Name="SendContact_Text"
+                FontFamily="PoppinsMedium"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="{x:Static local:Resources.Dictionary.PermissionToSendYourContact}"
+                TextColor="{DynamicResource WhiteColor}"
+                VerticalOptions="Center"
+                WidthRequest="310" />
+            <Switch
+                x:Name="SendContact1"
+                Margin="0,0,20,0"
+                IsToggled="True"
+                OnColor="{DynamicResource Theme}"
+                Scale="1.3"
+                ThumbColor="White"
+                Toggled="SfSwitch_SendContactStateChanged" />
 
+
+        </StackLayout>-->
         <StackLayout
             Margin="14,15,14,0"
             BackgroundColor="{DynamicResource Gray}"
@@ -78,7 +97,6 @@
                         MaximumTrackColor="Wheat"
                         Minimum="0"
                         MinimumTrackColor="{DynamicResource Color2}"
-                        Scale="1.2"
                         ThumbColor="{DynamicResource Color2}"
                         ValueChanged="MessageLimits_Clicked"
                         VerticalOptions="FillAndExpand" />
@@ -86,30 +104,29 @@
                         x:Name="MessageLimitSteps"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
-
                         <Label
-                            AbsoluteLayout.LayoutBounds="-0.02,0"
+                            AbsoluteLayout.LayoutBounds="0.06,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="0"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="0.32,0"
+                            AbsoluteLayout.LayoutBounds="0.33,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="10"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="0.67,0"
+                            AbsoluteLayout.LayoutBounds="0.66,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="20"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="1.0,0"
+                            AbsoluteLayout.LayoutBounds="0.95,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
@@ -162,39 +179,36 @@
                         MaximumTrackColor="Wheat"
                         Minimum="0"
                         MinimumTrackColor="{DynamicResource Color2}"
-                        Scale="1.2"
                         ThumbColor="{DynamicResource Color2}"
                         ValueChanged="MessageDuration_Clicked"
                         VerticalOptions="FillAndExpand" />
-
                     <AbsoluteLayout
                         x:Name="Steps"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
-
                         <Label
-                            AbsoluteLayout.LayoutBounds="-0.02,0"
+                            AbsoluteLayout.LayoutBounds="0.06,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="0"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="0.32,0"
+                            AbsoluteLayout.LayoutBounds="0.33,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="10"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="0.67,0"
+                            AbsoluteLayout.LayoutBounds="0.66,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"
                             Text="20"
                             TextColor="{DynamicResource WhiteColor}" />
                         <Label
-                            AbsoluteLayout.LayoutBounds="1.0,0"
+                            AbsoluteLayout.LayoutBounds="0.95,0"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             FontFamily="PoppinsLight"
                             FontSize="14"

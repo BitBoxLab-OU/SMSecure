@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegraph.iOS", "Telegraph\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localization", "Localization\Localization.csproj", "{FFE493CA-FAC2-485E-A759-E544D673D286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UupDesignComponents", "UupDesignComponents\UupDesignComponents.csproj", "{96FE71A4-F6A6-4C7E-941E-FD09E1CCE07E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UupDesignComponents", "UupDesignComponents\UupDesignComponents.csproj", "{96FE71A4-F6A6-4C7E-941E-FD09E1CCE07E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectrumXClient", "ElectrumXClient\src\ElectrumXClient\ElectrumXClient.csproj", "{0A773B7E-15ED-4386-959E-B586CDCC4F69}"
 EndProject

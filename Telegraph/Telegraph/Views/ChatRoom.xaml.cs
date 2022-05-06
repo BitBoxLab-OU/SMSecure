@@ -54,9 +54,12 @@ namespace Telegraph.Views
         private CancellationTokenSource _stickyHeaderToken;
         private CancellationTokenSource _videoUploadTokenSource;
 
+
         public ChatRoom()
         {
         }
+
+       
 
         public ChatRoom(Contact contact, byte[] file = null)
         {
@@ -361,7 +364,6 @@ namespace Telegraph.Views
 
         private void CheckContactIsBlocked()
         {
-            AudioButton.IsVisible = VideoButton.IsVisible = ComposerPlaceHolder.IsVisible = !_contact.IsBlocked;
             BlockUserTxt.IsVisible = _contact.IsBlocked;
         }
 

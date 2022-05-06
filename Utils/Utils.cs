@@ -119,5 +119,13 @@ namespace Utils
 
             }
         }
+
+        public static void Click(this View view, EventHandler tapped)
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += tapped;
+            tapGestureRecognizer.NumberOfTapsRequired = 1;
+            view.GestureRecognizers.Add(tapGestureRecognizer);
+        }
     }
 }

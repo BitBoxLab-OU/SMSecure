@@ -73,17 +73,21 @@
     <None Remove="Image\DarkImage\ic_scroll_down.png" />
     <None Remove="Image\DarkImage\ic_audio_pause.png" />
     <None Remove="Image\DarkImage\ic_pick_video.png" />
-    <None Remove="Image\DarkImage\ic_new_camera.png" />
-    <None Remove="Image\DarkImage\ic_edit_username.png" />
     <None Remove="Image\DarkImage\ic_hamburger_menu.png" />
 
-    
-
+    <None Remove="Image\DarkImage\ic_menu_next.png" />
+    <None Remove="Image\DarkImage\ic_profile.png" />
+    <None Remove="Image\DarkImage\ic_verify_passphase.png" />
+    <None Remove="Image\DarkImage\ic_privacy.png" />
+    <None Remove="Image\DarkImage\ic_other_settings.png" />
+    <None Remove="Image\DarkImage\ic_font_size.png" />
+    <None Remove="Image\DarkImage\ic_fag.png" />
+    <None Remove="Image\DarkImage\ic_edit_username.png" />
+    <None Remove="Image\DarkImage\ic_new_record.png" />
 
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Image\DarkImage\ic_edit_username.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_fingerprint.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_menu_close.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_message.png" />
@@ -102,13 +106,13 @@
     <EmbeddedResource Include="Image\DarkImage\ic_scroll_down.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_audio_pause.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_pick_video.png" />
-    <EmbeddedResource Include="Image\DarkImage\ic_new_camera.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Image\DarkImage\ic_add.png" />
     <EmbeddedResource Include="Image\DarkImage\Company_logo.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_accept_call.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_add_contact_cancel.png" />
@@ -168,6 +172,7 @@
     <EmbeddedResource Include="Image\DarkImage\ic_new_audio_start.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_new_back_icon.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_new_call.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_new_camera.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_new_cam_forCallPage.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_new_cancel.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_new_clear_contact.png" />
@@ -240,13 +245,24 @@
     <EmbeddedResource Include="Image\DarkImage\ic_image.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_thumb_my_message.png" />
     <EmbeddedResource Include="Image\DarkImage\ic_thumb_receiver_message.png" />
-    <EmbeddedResource Include="Image\DarkImage\ic_hamburger_menu.png" />
 
-    
+    <EmbeddedResource Include="Image\DarkImage\ic_profile.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_verify_passphase.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_privacy.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_other_settings.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_font_size.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_fag.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_hamburger_menu.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_blue_search.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_send_image.png" />
+    <EmbeddedResource Include="Image\DarkImage\ic_edit_username.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\Common\" />
     <Folder Include="Image\LightImage\" />
     <Folder Include="Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="image\DarkImage\ic_menu_next.png" />
   </ItemGroup>
 </Project>

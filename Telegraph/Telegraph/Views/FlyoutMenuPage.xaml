@@ -20,6 +20,7 @@
                         Title="Profile"
                         IconSource="{dh:ImageResourceExtension ic_profile.png}"
                         TargetType="{x:Type local:ProfilePage}" />
+
                     <local1:FlyoutPageItem
                         Title="Show Qr and Public Key"
                         IconSource="{dh:ImageResourceExtension ic_new_qrcode_scan.png}"
@@ -36,7 +37,7 @@
                     <local1:FlyoutPageItem
                         Title="Verify passphrase"
                         IconSource="{dh:ImageResourceExtension ic_verify_passphase.png}"
-                        TargetType="{x:Type local:ShowPublicKeyPage}" />
+                        TargetType="{x:Type local:VerifyPassphrase}" />
                     <local1:FlyoutPageItem
                         Title="Other Settings"
                         IconSource="{dh:ImageResourceExtension ic_other_settings.png}"

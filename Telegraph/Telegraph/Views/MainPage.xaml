@@ -27,8 +27,6 @@
                 VerticalOptions="FillAndExpand">
                 <StackLayout BackgroundColor="{x:DynamicResource Color1}" Orientation="Vertical">
                     <chatView:ChatList x:Name="ChatList" VerticalOptions="FillAndExpand" />
-                    <views:CustomNoResult x:Name="NoResultPage" VerticalOptions="FillAndExpand" />
-                    <views:CustomNoItem x:Name="NoItemPage" VerticalOptions="FillAndExpand" />
                 </StackLayout>
             </Frame>
             <ImageButton
